@@ -1,0 +1,9 @@
+{
+  "name": "Nemo Nini Finance",
+  "short_name": "Finance",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50",
+  "icons": []
+}
