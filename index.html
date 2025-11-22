@@ -1,816 +1,582 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tự do tài chính - Nemo Nini Family</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border: none;
+        }
+        .card-header {
+            background-color: #2a5298;
+            color: white;
+            border-radius: 10px 10px 0 0 !important;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+        }
+        .form-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        .form-section-title {
+            font-weight: 600;
+            color: #2a5298;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background-color: #2a5298;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: center;
+            border: 1px solid #dee2e6;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .btn-calculate {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .logo {
+            max-width: 200px;
+            margin: 0 auto 1rem;
+            display: block;
+        }
+        .note {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="vi"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Tự do tài chính - Nemo Nini Family&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f7f9fb;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Ẩn mũi tên tăng/giảm của input[type=number] */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>input[type="number"]::-webkit-outer-spin-button,</p>
-<p class="p1"><span class="Apple-converted-space">        </span>input[type="number"]::-webkit-inner-spin-button {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-appearance: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>input[type="number"] {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-moz-appearance: textfield;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Tùy chỉnh mũi tên cho &lt;details&gt; */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>summary {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>list-style: none; /* Xóa mũi tên mặc định */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>summary::-webkit-details-marker {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: none; /* Xóa mũi tên cho Chrome */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Icon mũi tên tùy chỉnh */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>summary:before {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>content: "▶";</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-right: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.2s;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.8em;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #4f46e5;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>details[open] summary:before {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: rotate(90deg);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Tùy chỉnh thanh cuộn cho khu vực kết quả */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.result-scroll::-webkit-scrollbar {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.result-scroll::-webkit-scrollbar-track {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #f1f1f1;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.result-scroll::-webkit-scrollbar-thumb {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #cbd5e1;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.result-scroll::-webkit-scrollbar-thumb:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: #94a3b8;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Tùy chỉnh cho Chart.js tooltip */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.chartjs-tooltip {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity: 1;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(0, 0, 0, 0.8);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.1s ease;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>white-space: nowrap;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translate(-50%, -100%);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: -10px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.chartjs-tooltip-key {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-right: 5px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"&gt;&lt;/script&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="p-4 md:p-8 lg:p-12"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="max-w-7xl mx-auto"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2"&gt;Tự do Tài chính - Nemo Nini Family&lt;/h1&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="grid grid-cols-1 lg:grid-cols-3 gap-8"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="lg:col-span-1 space-y-6 bg-white p-6 rounded-xl shadow-lg h-fit"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-xl font-semibold text-indigo-600 border-b pb-2"&gt;1. Tham số &amp; Đầu vào&lt;/h2&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;details open&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;summary class="font-medium text-gray-700 hover:text-indigo-600"&gt;Tổng quan &amp; Thị trường&lt;/summary&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="mt-3 space-y-3 pl-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="startYear" class="text-sm text-gray-600"&gt;Năm bắt đầu tính toán&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="startYear" value="2025" min="2000" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="simulationDuration" class="text-sm text-gray-600"&gt;Thời gian mô phỏng (năm)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="simulationDuration" value="30" min="1" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="inflationRate" class="text-sm text-gray-600"&gt;Lạm phát trung bình (%)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="inflationRate" value="3" min="0" max="100" step="0.1" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="savingInterestRate" class="text-sm text-gray-600"&gt;Lãi suất tiết kiệm/trái phiếu (%)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="savingInterestRate" value="5" min="0" max="100" step="0.1" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="stockInterestRate" class="text-sm text-gray-600"&gt;Lãi suất chứng khoán/quỹ (%)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="stockInterestRate" value="10" min="0" max="100" step="0.1" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/details&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;details open&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;summary class="font-medium text-gray-700 hover:text-indigo-600"&gt;Tài sản Hiện tại (Năm 0)&lt;/summary&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="mt-3 space-y-3 pl-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="initialSavings" class="text-sm text-gray-600"&gt;Tiết kiệm/Trái phiếu (triệu)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="initialSavings" value="500" min="0" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="initialStocks" class="text-sm text-gray-600"&gt;Chứng khoán/Quỹ (triệu)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="initialStocks" value="500" min="0" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="initialLand1" class="text-sm text-gray-600"&gt;Đất 1 (triệu)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="initialLand1" value="5000" min="0" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="initialLand2" class="text-sm text-gray-600"&gt;Đất 2 (triệu)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="initialLand2" value="2000" min="0" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="initialApartment" class="text-sm text-gray-600"&gt;Chung cư Lumi (triệu)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="initialApartment" value="4000" min="0" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="loanApartment" class="text-sm text-gray-600"&gt;Khoản vay Lumi (triệu)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="loanApartment" value="1000" min="0" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="loanInterestRate" class="text-sm text-gray-600"&gt;Lãi suất vay (%)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="loanInterestRate" value="10" min="0" max="100" step="0.1" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/details&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;details open&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;summary class="font-medium text-gray-700 hover:text-indigo-600"&gt;Thu nhập &amp; Chi tiêu&lt;/summary&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="mt-3 space-y-3 pl-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="initialMonthlyExpense" class="text-sm text-gray-600"&gt;Chi tiêu cơ bản hàng tháng (triệu)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="initialMonthlyExpense" value="50" min="0" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="incomeWife" class="text-sm text-gray-600"&gt;Lương vợ (triệu/tháng)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="incomeWife" value="30" min="0" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="incomeHusband" class="text-sm text-gray-600"&gt;Lương chồng (triệu/tháng)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="incomeHusband" value="40" min="0" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="incomeRental" class="text-sm text-gray-600"&gt;Thu nhập cho thuê (triệu/tháng)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="incomeRental" value="15" min="0" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="salaryIncrease" class="text-sm text-gray-600"&gt;Tăng lương hàng năm (%)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="salaryIncrease" value="5" min="0" max="100" step="0.1" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="surplusToSavings" class="text-sm text-gray-600"&gt;Thặng dư vào Tiết kiệm (%)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="surplusToSavings" value="50" min="0" max="100" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;label for="surplusToStocks" class="text-sm text-gray-600"&gt;Thặng dư vào Chứng khoán (%)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="number" id="surplusToStocks" value="50" min="0" max="100" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-sm focus:ring-indigo-500 focus:border-indigo-500" disabled&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/details&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;details open&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;summary class="font-medium text-gray-700 hover:text-indigo-600"&gt;Các Mốc Sự kiện Tài chính&lt;/summary&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="mt-3 space-y-3 pl-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="border p-3 rounded-md bg-gray-50"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm font-semibold mb-2"&gt;Đất 1 - Sự kiện&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-center justify-between mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="sellLand1Year" class="text-xs text-gray-600"&gt;Năm Bán Đất 1&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;select id="sellLand1Year" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-xs focus:ring-indigo-500 focus:border-indigo-500"&gt;&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-center justify-between mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="land1Appreciation" class="text-xs text-gray-600"&gt;Tăng trưởng Đất 1 (%)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="number" id="land1Appreciation" value="12" min="0" max="100" step="0.1" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-xs focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-center justify-between mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="sellLand1ToSavings" class="text-xs text-gray-600"&gt;Tiền Bán vào Tiết kiệm (%)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="number" id="sellLand1ToSavings" value="50" min="0" max="100" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-xs focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="sellLand1ToStocks" class="text-xs text-gray-600"&gt;Tiền Bán vào Chứng khoán (%)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="number" id="sellLand1ToStocks" value="50" min="0" max="100" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-xs focus:ring-indigo-500 focus:border-indigo-500" disabled&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="border p-3 rounded-md bg-gray-50"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm font-semibold mb-2"&gt;Đất 2 - Sự kiện&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-center justify-between mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="sellLand2Year" class="text-xs text-gray-600"&gt;Năm Bán Đất 2&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;select id="sellLand2Year" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-xs focus:ring-indigo-500 focus:border-indigo-500"&gt;&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-center justify-between mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="land2Appreciation" class="text-xs text-gray-600"&gt;Tăng trưởng Đất 2 (%)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="number" id="land2Appreciation" value="10" min="0" max="100" step="0.1" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-xs focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-center justify-between mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="sellLand2ToSavings" class="text-xs text-gray-600"&gt;Tiền Bán vào Tiết kiệm (%)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="number" id="sellLand2ToSavings" value="0" min="0" max="100" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-xs focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="sellLand2ToStocks" class="text-xs text-gray-600"&gt;Tiền Bán vào Chứng khoán (%)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="number" id="sellLand2ToStocks" value="100" min="0" max="100" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-xs focus:ring-indigo-500 focus:border-indigo-500" disabled&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="border p-3 rounded-md bg-gray-50"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm font-semibold mb-2"&gt;Các Thay đổi Chi tiêu&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-center justify-between mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="expenseChangeYear1" class="text-xs text-gray-600"&gt;Năm Chi tiêu tăng (Lần 1)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;select id="expenseChangeYear1" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-xs focus:ring-indigo-500 focus:border-indigo-500"&gt;&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-center justify-between mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="expenseChangeAmount1" class="text-xs text-gray-600"&gt;Tăng thêm (triệu/tháng)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="number" id="expenseChangeAmount1" value="20" min="0" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-xs focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div class="flex items-center justify-between mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="expenseChangeYear2" class="text-xs text-gray-600"&gt;Năm Chi tiêu tăng (Lần 2)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;select id="expenseChangeYear2" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-xs focus:ring-indigo-500 focus:border-indigo-500"&gt;&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-center justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="expenseChangeAmount2" class="text-xs text-gray-600"&gt;Tăng thêm (triệu/tháng)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="number" id="expenseChangeAmount2" value="20" min="0" class="w-24 border border-gray-300 rounded-md p-1.5 text-right text-xs focus:ring-indigo-500 focus:border-indigo-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/details&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="calculateButton" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-150 shadow-md"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>Tính toán &amp; Cập nhật</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="lg:col-span-2 space-y-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-xl font-semibold text-green-600 border-b pb-2 mb-4"&gt;2. Kết quả Tổng quan&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="p-4 bg-green-50 rounded-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-gray-600 font-medium"&gt;Tổng Tài sản Ròng (Năm cuối)&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p id="netWorthFinal" class="text-2xl font-bold text-green-700 mt-1"&gt;...&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-xs text-gray-500"&gt;Triệu VNĐ&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="p-4 bg-blue-50 rounded-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-gray-600 font-medium"&gt;Năm đạt Tự do Tài chính (FF)&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p id="ffYear" class="text-2xl font-bold text-blue-700 mt-1"&gt;...&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-xs text-gray-500"&gt;(Theo công thức 25x Chi tiêu)&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="p-4 bg-yellow-50 rounded-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-sm text-gray-600 font-medium"&gt;Tỷ lệ An toàn (Năm FF)&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p id="ffSafetyRatio" class="text-2xl font-bold text-yellow-700 mt-1"&gt;...&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-xs text-gray-500"&gt;(Số năm Chi tiêu dự trữ)&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-xl font-semibold text-gray-800 border-b pb-2 mb-4"&gt;3. Biểu đồ Tài sản Ròng &amp; Mục tiêu FF&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="relative h-96"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;canvas id="financialChart"&gt;&lt;/canvas&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-xl font-semibold text-gray-800 border-b pb-2 mb-4"&gt;4. Bảng Dữ liệu Chi tiết&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="overflow-x-auto h-96 result-scroll"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;table class="min-w-full divide-y divide-gray-200"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;thead class="bg-gray-50 sticky top-0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Năm&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Tài sản Ròng&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Chi tiêu/Năm&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Mục tiêu FF&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Tiết kiệm&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Chứng khoán&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Đất 1&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;Đất 2&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;tbody id="dataTableBody" class="bg-white divide-y divide-gray-200"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/table&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// --- CÁC HÀM TIỆN ÍCH ---</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/**</p>
-<p class="p1"><span class="Apple-converted-space">         </span>* Định dạng số thành chuỗi có dấu phẩy phân cách hàng nghìn.</p>
-<p class="p1"><span class="Apple-converted-space">         </span>* @param {number} num - Số cần định dạng (triệu VNĐ).</p>
-<p class="p1"><span class="Apple-converted-space">         </span>* @returns {string} Chuỗi đã định dạng.</p>
-<p class="p1"><span class="Apple-converted-space">         </span>*/</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const formatNumber = (num) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (num === null || num === undefined) return '0';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return Math.round(num).toLocaleString('vi-VN');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/**</p>
-<p class="p1"><span class="Apple-converted-space">         </span>* Đồng bộ hóa hai input tỷ lệ phần trăm (a + b = 100).</p>
-<p class="p1"><span class="Apple-converted-space">         </span>* @param {string} changedId - ID của input vừa được thay đổi.</p>
-<p class="p1"><span class="Apple-converted-space">         </span>* @param {string} targetId - ID của input cần cập nhật.</p>
-<p class="p1"><span class="Apple-converted-space">         </span>*/</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const syncPercentage = (changedId, targetId) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const changedInput = document.getElementById(changedId);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const targetInput = document.getElementById(targetId);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>let changedValue = parseFloat(changedInput.value) || 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (changedValue &lt; 0) changedValue = 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (changedValue &gt; 100) changedValue = 100;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>changedInput.value = changedValue;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>let targetValue = 100 - changedValue;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>targetInput.value = targetValue.toFixed(0);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/**</p>
-<p class="p1"><span class="Apple-converted-space">         </span>* Lấy giá trị số từ một input, xử lý trường hợp giá trị rỗng/không hợp lệ.</p>
-<p class="p1"><span class="Apple-converted-space">         </span>* @param {string} id - ID của input.</p>
-<p class="p1"><span class="Apple-converted-space">         </span>* @returns {number} Giá trị số (hoặc 0 nếu không hợp lệ).</p>
-<p class="p1"><span class="Apple-converted-space">         </span>*/</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const getInputValue = (id) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const element = document.getElementById(id);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (!element) return 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const value = parseFloat(element.value);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return isNaN(value) ? 0 : value;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/**</p>
-<p class="p1"><span class="Apple-converted-space">         </span>* Điền các dropdown chọn năm.</p>
-<p class="p1"><span class="Apple-converted-space">         </span>*/</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const populateDropdowns = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const startYear = getInputValue('startYear');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const duration = getInputValue('simulationDuration');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const endYear = startYear + duration;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const dropdownIds = [</p>
-<p class="p1"><span class="Apple-converted-space">                </span>'sellLand1Year', 'sellLand2Year',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>'expenseChangeYear1', 'expenseChangeYear2'</p>
-<p class="p1"><span class="Apple-converted-space">            </span>];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>dropdownIds.forEach(id =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const select = document.getElementById(id);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (!select) return;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Xóa các option cũ</p>
-<p class="p1"><span class="Apple-converted-space">                </span>select.innerHTML = '';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Thêm option "Không"</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const optionNone = document.createElement('option');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>optionNone.value = '0';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>optionNone.textContent = 'Không';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>select.appendChild(optionNone);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Thêm các năm mô phỏng</p>
-<p class="p1"><span class="Apple-converted-space">                </span>for (let year = startYear; year &lt;= endYear; year++) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const option = document.createElement('option');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>option.value = year;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>option.textContent = year;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>select.appendChild(option);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Thiết lập giá trị mặc định cho các mốc</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (id === 'sellLand1Year') select.value = startYear + 10;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (id === 'sellLand2Year') select.value = startYear + 20;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (id === 'expenseChangeYear1') select.value = startYear + 18;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (id === 'expenseChangeYear2') select.value = startYear + 22;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// --- HÀM TÍNH TOÁN CHÍNH ---</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>let financialChart; // Biến toàn cục để lưu trữ biểu đồ Chart.js</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const calculateAndRender = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>// 1. LẤY THAM SỐ ĐẦU VÀO</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const startYear = getInputValue('startYear');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const duration = getInputValue('simulationDuration');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const inflationRate = getInputValue('inflationRate') / 100;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const savingInterestRate = getInputValue('savingInterestRate') / 100;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const stockInterestRate = getInputValue('stockInterestRate') / 100;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const loanInterestRate = getInputValue('loanInterestRate') / 100;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const salaryIncreaseRate = getInputValue('salaryIncrease') / 100;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const land1Appreciation = getInputValue('land1Appreciation') / 100;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const land2Appreciation = getInputValue('land2Appreciation') / 100;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>let initialSavings = getInputValue('initialSavings');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let initialStocks = getInputValue('initialStocks');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let initialLand1 = getInputValue('initialLand1');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let initialLand2 = getInputValue('initialLand2');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let initialApartment = getInputValue('initialApartment');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let loanApartment = getInputValue('loanApartment');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let initialMonthlyExpense = getInputValue('initialMonthlyExpense');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let incomeWife = getInputValue('incomeWife');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let incomeHusband = getInputValue('incomeHusband');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let incomeRental = getInputValue('incomeRental');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const surplusToSavingsRatio = getInputValue('surplusToSavings') / 100;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const surplusToStocksRatio = getInputValue('surplusToStocks') / 100;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const sellLand1ToSavingsRatio = getInputValue('sellLand1ToSavings') / 100;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const sellLand1ToStocksRatio = getInputValue('sellLand1ToStocks') / 100;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const sellLand2ToSavingsRatio = getInputValue('sellLand2ToSavings') / 100;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const sellLand2ToStocksRatio = getInputValue('sellLand2ToStocks') / 100;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Sự kiện Mốc</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const sellLand1Year = getInputValue('sellLand1Year');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const sellLand2Year = getInputValue('sellLand2Year');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const expenseChangeYear1 = getInputValue('expenseChangeYear1');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const expenseChangeAmount1 = getInputValue('expenseChangeAmount1');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const expenseChangeYear2 = getInputValue('expenseChangeYear2');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const expenseChangeAmount2 = getInputValue('expenseChangeAmount2');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// 2. MÔ PHỎNG THEO TỪNG NĂM</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let results = [];</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let ffYear = 'Không đạt';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let ffSafetyRatio = '-';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Biến trạng thái để theo dõi việc bán tài sản</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let land1Sold = false;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let land2Sold = false;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Biến trạng thái Thu nhập &amp; Chi tiêu theo năm</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let currentMonthlyExpense = initialMonthlyExpense;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let currentIncomeWife = incomeWife;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let currentIncomeHusband = incomeHusband;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let currentLoan = loanApartment;</p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>for (let year = 0; year &lt;= duration; year++) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const currentYear = startYear + year;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>let data = {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>year: currentYear,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>savings: 0,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>stocks: 0,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>land1: 0,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>land2: 0,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>apartment: 0,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>loan: 0,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>netWorth: 0,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>annualExpense: 0,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>ffGoal: 0,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>isFF: false,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>event: ''</p>
-<p class="p1"><span class="Apple-converted-space">                </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// --- TÍNH TOÁN ĐẦU NĂM (Tích lũy năm trước) ---</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (year &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const prev = results[year - 1];</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>let eventDescription = '';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// 1. Tăng trưởng tài sản có thanh khoản (Tiết kiệm, Chứng khoán)</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.savings = prev.savings * (1 + savingInterestRate * (1 - inflationRate)); // Điều chỉnh lạm phát cho Tiết kiệm (Không bắt buộc, nhưng hợp lý hơn)</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.stocks = prev.stocks * (1 + stockInterestRate * (1 - inflationRate)); // Điều chỉnh lạm phát cho Chứng khoán</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// 2. Tăng trưởng tài sản vật chất (Đất, Chung cư)</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.land1 = prev.land1 * (1 + land1Appreciation);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.land2 = prev.land2 * (1 + land2Appreciation);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.apartment = prev.apartment * (1 + inflationRate); // Giả sử chung cư tăng trưởng bằng lạm phát</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// 3. Tăng trưởng Chi tiêu &amp; Lương</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>currentMonthlyExpense = prev.annualExpense / 12 * (1 + inflationRate); // Chi tiêu năm trước, tăng theo lạm phát</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>currentIncomeWife = currentIncomeWife * (1 + salaryIncreaseRate);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>currentIncomeHusband = currentIncomeHusband * (1 + salaryIncreaseRate);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// 4. Trả nợ</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// Giả định trả nợ gốc hàng năm (10% khoản vay ban đầu, hoặc trả hết nếu gần hết)</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const annualPrincipalPayment = Math.min(loanApartment * 0.1, prev.loan);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>currentLoan = Math.max(0, prev.loan - annualPrincipalPayment);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// Lãi suất trả: prev.loan * loanInterestRate (đã được tính vào Chi tiêu bên dưới)</p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// --- XỬ LÝ SỰ KIỆN MỐC TRONG NĂM ---</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// 5. Sự kiện Bán Đất 1</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (currentYear === sellLand1Year &amp;&amp; !land1Sold) {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const land1Value = data.land1;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>data.savings += land1Value * sellLand1ToSavingsRatio;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>data.stocks += land1Value * sellLand1ToStocksRatio;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>data.land1 = 0;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>land1Sold = true;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>eventDescription += `Bán Đất 1 (Giá: ${formatNumber(land1Value)} tr). Phân bổ: Tiết kiệm ${sellLand1ToSavingsRatio * 100}%, CK ${sellLand1ToStocksRatio * 100}%. `;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// 6. Sự kiện Bán Đất 2</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (currentYear === sellLand2Year &amp;&amp; !land2Sold) {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const land2Value = data.land2;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>data.savings += land2Value * sellLand2ToSavingsRatio;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>data.stocks += land2Value * sellLand2ToStocksRatio;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>data.land2 = 0;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>land2Sold = true;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>eventDescription += `Bán Đất 2 (Giá: ${formatNumber(land2Value)} tr). Phân bổ: Tiết kiệm ${sellLand2ToSavingsRatio * 100}%, CK ${sellLand2ToStocksRatio * 100}%. `;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// 7. Sự kiện Tăng Chi tiêu (Lần 1)</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (currentYear === expenseChangeYear1) {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>// Chi tiêu tăng thêm này cũng phải được điều chỉnh lạm phát sau 1 năm</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const realIncrease = expenseChangeAmount1 * Math.pow(1 + inflationRate, year);</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>currentMonthlyExpense += realIncrease;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>eventDescription += `Chi tiêu tăng thêm Lần 1: ${formatNumber(realIncrease)} tr/tháng. `;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// 8. Sự kiện Tăng Chi tiêu (Lần 2)</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (currentYear === expenseChangeYear2) {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>// Chi tiêu tăng thêm này cũng phải được điều chỉnh lạm phát sau 1 năm</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const realIncrease = expenseChangeAmount2 * Math.pow(1 + inflationRate, year);</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>currentMonthlyExpense += realIncrease;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>eventDescription += `Chi tiêu tăng thêm Lần 2: ${formatNumber(realIncrease)} tr/tháng. `;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.event = eventDescription.trim();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// --- NĂM 0 (DỮ LIỆU BAN ĐẦU) ---</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.savings = initialSavings;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.stocks = initialStocks;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.land1 = initialLand1;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.land2 = initialLand2;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.apartment = initialApartment;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.loan = loanApartment;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>currentMonthlyExpense = initialMonthlyExpense;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// --- TÍNH TOÁN DÒNG TIỀN TRONG NĂM ---</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const totalMonthlyIncome = currentIncomeWife + currentIncomeHusband + incomeRental;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const loanInterestMonthly = (data.loan &gt; 0) ? (data.loan / 12 * loanInterestRate) : 0;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Tổng chi tiêu hàng tháng: Chi tiêu cơ bản + Lãi suất vay + Trả nợ gốc (đã tính ở bước 4)</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Tuy nhiên, để đơn giản, chỉ cần tính: Chi tiêu cơ bản + Lãi suất vay</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const totalMonthlyExpense = currentMonthlyExpense + loanInterestMonthly;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Thặng dư hàng tháng</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const monthlySurplus = totalMonthlyIncome - totalMonthlyExpense;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const annualSurplus = monthlySurplus * 12;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Tích lũy thêm từ thặng dư</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (annualSurplus &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const surplusToSavings = annualSurplus * surplusToSavingsRatio;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const surplusToStocks = annualSurplus * surplusToStocksRatio;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.savings += surplusToSavings;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.stocks += surplusToStocks;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// --- TÍNH KẾT QUẢ CUỐI NĂM ---</p>
-<p class="p1"><span class="Apple-converted-space">                </span>data.annualExpense = currentMonthlyExpense * 12;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>data.netWorth = data.savings + data.stocks + data.land1 + data.land2 + data.apartment - data.loan;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Mục tiêu Tự do Tài chính (25x Chi tiêu)</p>
-<p class="p1"><span class="Apple-converted-space">                </span>data.ffGoal = data.annualExpense * 25;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Xác định Tự do Tài chính</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (data.netWorth &gt;= data.ffGoal) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.isFF = true;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (ffYear === 'Không đạt') {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>ffYear = currentYear;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>// Tính tỷ lệ an toàn (Safety Ratio) khi đạt FF</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>ffSafetyRatio = (data.netWorth / data.annualExpense).toFixed(1);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>results.push(data);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// 3. HIỂN THỊ KẾT QUẢ TỔNG QUAN</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const finalData = results[results.length - 1];</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('netWorthFinal').textContent = formatNumber(finalData.netWorth);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('ffYear').textContent = ffYear;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('ffSafetyRatio').textContent = `${ffSafetyRatio} x`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// 4. HIỂN THỊ BẢNG DỮ LIỆU</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const dataTableBody = document.getElementById('dataTableBody');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>dataTableBody.innerHTML = ''; // Xóa dữ liệu cũ</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>results.forEach(row =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const tr = document.createElement('tr');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>tr.className = row.isFF ? 'bg-green-100 hover:bg-green-200 transition duration-100' : 'hover:bg-gray-50';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>tr.innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="px-3 py-2 whitespace-nowrap text-sm font-medium ${row.isFF ? 'text-green-800' : 'text-gray-900'}"&gt;${row.year} ${row.isFF ? '✨' : ''}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="px-3 py-2 whitespace-nowrap text-sm text-gray-500 font-bold"&gt;${formatNumber(row.netWorth)}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="px-3 py-2 whitespace-nowrap text-sm text-gray-500"&gt;${formatNumber(row.annualExpense)}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="px-3 py-2 whitespace-nowrap text-sm text-indigo-600 font-semibold"&gt;${formatNumber(row.ffGoal)}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="px-3 py-2 whitespace-nowrap text-sm text-gray-500"&gt;${formatNumber(row.savings)}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="px-3 py-2 whitespace-nowrap text-sm text-gray-500"&gt;${formatNumber(row.stocks)}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="px-3 py-2 whitespace-nowrap text-sm text-gray-500"&gt;${formatNumber(row.land1)}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;td class="px-3 py-2 whitespace-nowrap text-sm text-gray-500"&gt;${formatNumber(row.land2)}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Tooltip cho sự kiện</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (row.event) {</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>tr.title = `Sự kiện: ${row.event}`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>dataTableBody.appendChild(tr);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// 5. HIỂN THỊ BIỂU ĐỒ</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const ctx = document.getElementById('financialChart').getContext('2d');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Xóa biểu đồ cũ nếu có</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (financialChart) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>financialChart.destroy();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Tạo biểu đồ mới</p>
-<p class="p1"><span class="Apple-converted-space">            </span>financialChart = new Chart(ctx, {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>type: 'line',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>data: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>labels: results.map(r =&gt; r.year),</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>datasets: [</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>{</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>label: 'Tài sản Ròng',</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>data: results.map(r =&gt; r.netWorth),</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>borderColor: '#4f46e5',</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>backgroundColor: 'rgba(79, 70, 229, 0.1)',</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>borderWidth: 3,</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>fill: true,</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>tension: 0.3,</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>pointRadius: 2</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>{</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>label: 'Mục tiêu Tự do Tài chính (FF)',</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>data: results.map(r =&gt; r.ffGoal),</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>borderColor: '#ef4444',</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>backgroundColor: 'transparent',</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>borderWidth: 2,</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>borderDash: [5, 5],</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>tension: 0,</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>pointRadius: 0</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>]</p>
-<p class="p1"><span class="Apple-converted-space">                </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                </span>options: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>responsive: true,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>maintainAspectRatio: false,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>scales: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>y: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>title: {</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>display: true,</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>text: 'Giá trị (Triệu VNĐ)',</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>font: { size: 14, weight: 'bold' }</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>beginAtZero: true,</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>grid: {</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>color: '#e5e7eb'</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>ticks: {</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>callback: function(value, index, ticks) {</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>return formatNumber(value); // Hiển thị triệu VNĐ</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>x: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>title: {</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>display: true,</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>text: 'Năm',</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>font: { size: 14, weight: 'bold' }</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>grid: {</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>display: false</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>plugins: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>legend: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>position: 'top',</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>labels: {</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>usePointStyle: true</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>annotation: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>annotations: {</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>ffLine: ffYear !== 'Không đạt' ? {</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>type: 'line',</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>xMin: ffYear,</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>xMax: ffYear,</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>borderColor: '#10b981',</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>borderWidth: 2,</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>borderDash: [6, 6],</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>label: {</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>content: `Năm FF: ${ffYear}`,</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>enabled: true,</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>position: 'start',</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>backgroundColor: '#10b981',</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>color: 'white',</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>padding: 6</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>} : undefined</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>tooltip: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>mode: 'index',</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>intersect: false,</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>callbacks: {</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>label: function(context) {</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>let label = context.dataset.label || '';</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>if (label) {</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>label += ': ';</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>if (context.parsed.y !== null) {</p>
-<p class="p1"><span class="Apple-converted-space">                                        </span>label += formatNumber(context.parsed.y) + ' Tr';</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                                    </span>return label;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// --- KHỞI TẠO ---</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const calculateButton = document.getElementById('calculateButton');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Khởi tạo các dropdown chọn năm lần đầu</p>
-<p class="p1"><span class="Apple-converted-space">            </span>populateDropdowns();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Gắn sự kiện đồng bộ phần trăm</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const surplusSavings = document.getElementById('surplusToSavings');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const surplusStocks = document.getElementById('surplusToStocks');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>surplusSavings.addEventListener('change', () =&gt; syncPercentage('surplusToSavings', 'surplusToStocks'));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>surplusStocks.addEventListener('change', () =&gt; syncPercentage('surplusToStocks', 'surplusToSavings'));</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const land1Savings = document.getElementById('sellLand1ToSavings');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const land1Stocks = document.getElementById('sellLand1ToStocks');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>land1Savings.addEventListener('change', () =&gt; syncPercentage('sellLand1ToSavings', 'sellLand1ToStocks'));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>land1Stocks.addEventListener('change', () =&gt; syncPercentage('sellLand1ToStocks', 'sellLand1ToSavings'));</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const land2Savings = document.getElementById('sellLand2ToSavings');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const land2Stocks = document.getElementById('sellLand2ToStocks');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>land2Savings.addEventListener('change', () =&gt; syncPercentage('sellLand2ToSavings', 'sellLand2ToStocks'));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>land2Stocks.addEventListener('change', () =&gt; syncPercentage('sellLand2ToStocks', 'sellLand2ToSavings'));</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Gắn sự kiện tính toán khi click</p>
-<p class="p1"><span class="Apple-converted-space">            </span>calculateButton.addEventListener('click', calculateAndRender);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Gắn sự kiện tính toán lại khi thay đổi năm (để cập nhật dropdown)</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('startYear').addEventListener('change', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>populateDropdowns();</p>
-<p class="p1"><span class="Apple-converted-space">                </span>calculateAndRender();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('simulationDuration').addEventListener('change', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>populateDropdowns();</p>
-<p class="p1"><span class="Apple-converted-space">                </span>calculateAndRender();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Gắn sự kiện tính toán lại khi thay đổi bất kỳ input nào</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('input, select').forEach(input =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Tránh gắn cho các input disable (như surplusToStocks)</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (!input.disabled) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>input.addEventListener('change', calculateAndRender);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Chạy tính toán lần đầu khi tải trang</p>
-<p class="p1"><span class="Apple-converted-space">            </span>calculateAndRender();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+    <div class="header">
+        <div class="container">
+            <h1>Tự do tài chính - Nemo Nini Family</h1>
+            <p class="lead">Lập kế hoạch tài chính cho tương lai của gia đình bạn</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        Hãy nhập các thông tin giả định về kế hoạch tài chính của bạn
+                    </div>
+                    <div class="card-body">
+                        <form id="financialForm">
+                            <!-- TÀI SẢN HIỆN TẠI CỦA GIA ĐÌNH -->
+                            <div class="form-section">
+                                <div class="form-section-title">TÀI SẢN HIỆN TẠI CỦA GIA ĐÌNH</div>
+                                <div class="mb-3">
+                                    <label class="form-label">Sổ tiết kiệm (tỷ VND)</label>
+                                    <input type="number" class="form-control" id="savings" value="4" step="0.1">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Chứng khoán (tỷ VND)</label>
+                                    <input type="number" class="form-control" id="stocks" value="0.2" step="0.1">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Đất (tỷ VND)</label>
+                                    <input type="number" class="form-control" id="land" value="2.7" step="0.1">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Chung cư Lumi (tỷ VND)</label>
+                                    <input type="number" class="form-control" id="lumi" value="1.8" step="0.1">
+                                </div>
+                            </div>
+
+                            <!-- THÔNG SỐ CHUNG CỦA THỊ TRƯỜNG -->
+                            <div class="form-section">
+                                <div class="form-section-title">THÔNG SỐ CHUNG CỦA THỊ TRƯỜNG</div>
+                                <div class="mb-3">
+                                    <label class="form-label">Lãi suất gửi tiết kiệm/năm (%)</label>
+                                    <select class="form-select" id="savingInterest">
+                                        <option value="0.04">4%</option>
+                                        <option value="0.05">5%</option>
+                                        <option value="0.06" selected>6%</option>
+                                        <option value="0.07">7%</option>
+                                        <option value="0.08">8%</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Lãi suất chứng khoán/chứng chỉ quỹ/năm (%)</label>
+                                    <select class="form-select" id="stockInterest">
+                                        <option value="0.06">6%</option>
+                                        <option value="0.07">7%</option>
+                                        <option value="0.08" selected>8%</option>
+                                        <option value="0.09">9%</option>
+                                        <option value="0.10">10%</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Lạm phát/năm (%)</label>
+                                    <select class="form-select" id="inflation">
+                                        <option value="0.02">2%</option>
+                                        <option value="0.03">3%</option>
+                                        <option value="0.04" selected>4%</option>
+                                        <option value="0.05">5%</option>
+                                        <option value="0.06">6%</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- CHI TIÊU CỦA GIA ĐÌNH -->
+                            <div class="form-section">
+                                <div class="form-section-title">CHI TIÊU CỦA GIA ĐÌNH</div>
+                                <div class="mb-3">
+                                    <label class="form-label">Mức chi tiêu/tháng (triệu VND)</label>
+                                    <input type="number" class="form-control" id="monthlyExpense" value="55" step="1">
+                                </div>
+                            </div>
+
+                            <!-- THU NHẬP CỦA GIA ĐÌNH -->
+                            <div class="form-section">
+                                <div class="form-section-title">THU NHẬP CỦA GIA ĐÌNH</div>
+                                <div class="mb-3">
+                                    <label class="form-label">Thu nhập từ lương/tháng (triệu VND)</label>
+                                    <input type="number" class="form-control" id="monthlySalary" value="100" step="1">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Thời điểm dừng làm việc</label>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <select class="form-select" id="stopWorkMonth">
+                                                <option value="1">Tháng 1</option>
+                                                <option value="12" selected>Tháng 12</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <select class="form-select" id="stopWorkYear">
+                                                <option value="2025">2025</option>
+                                                <option value="2026">2026</option>
+                                                <option value="2027" selected>2027</option>
+                                                <option value="2028">2028</option>
+                                                <option value="2029">2029</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Tỉ lệ phân bổ nếu có thặng dư</label>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="form-label">Sổ tiết kiệm (%)</label>
+                                            <input type="number" class="form-control" id="savingAllocation" value="100" min="0" max="100">
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label">Chứng khoán (%)</label>
+                                            <input type="number" class="form-control" id="stockAllocation" value="0" min="0" max="100">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Thu nhập thụ động -->
+                                <div class="mb-3">
+                                    <div class="form-section-title">THU NHẬP THỤ ĐỘNG</div>
+                                    
+                                    <!-- Nguồn 1 -->
+                                    <div class="mb-3 border p-3 rounded">
+                                        <h6>Nguồn số 1</h6>
+                                        <div class="mb-2">
+                                            <label class="form-label">Đặt tên nguồn tiền</label>
+                                            <input type="text" class="form-control" id="passiveIncome1Name" value="Cho thuê bất động sản">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Thu nhập/tháng (triệu VND)</label>
+                                            <input type="number" class="form-control" id="passiveIncome1Amount" value="20" step="1">
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col-6">
+                                                <label class="form-label">Năm bắt đầu</label>
+                                                <select class="form-select" id="passiveIncome1Start">
+                                                    <option value="2026">2026</option>
+                                                    <option value="2027">2027</option>
+                                                    <option value="2028" selected>2028</option>
+                                                    <option value="2029">2029</option>
+                                                    <option value="2030">2030</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="form-label">Năm kết thúc</label>
+                                                <select class="form-select" id="passiveIncome1End">
+                                                    <option value="">Không có</option>
+                                                    <option value="2035">2035</option>
+                                                    <option value="2040">2040</option>
+                                                    <option value="2045">2045</option>
+                                                    <option value="2050">2050</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Tỉ lệ tăng thu nhập thụ động/năm (%)</label>
+                                            <select class="form-select" id="passiveIncome1Growth">
+                                                <option value="0.00">0%</option>
+                                                <option value="0.01" selected>1%</option>
+                                                <option value="0.02">2%</option>
+                                                <option value="0.03">3%</option>
+                                                <option value="0.04">4%</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Mức đầu tư (tỷ VND)</label>
+                                            <input type="number" class="form-control" id="passiveIncome1Investment" value="1" step="0.1">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Các nguồn thu nhập thụ động khác (2, 3, 4) -->
+                                    <!-- Để đơn giản, tôi chỉ hiển thị nguồn 1, bạn có thể thêm các nguồn khác tương tự -->
+                                </div>
+                            </div>
+
+                            <!-- MỘT SỐ MỐC SỰ KIỆN -->
+                            <div class="form-section">
+                                <div class="form-section-title">MỘT SỐ MỐC SỰ KIỆN</div>
+                                <div class="mb-3">
+                                    <label class="form-label">Chuyển sinh sống nơi khác ở năm</label>
+                                    <select class="form-select" id="moveYear">
+                                        <option value="2029">2029</option>
+                                        <option value="2030">2030</option>
+                                        <option value="2031" selected>2031</option>
+                                        <option value="2032">2032</option>
+                                        <option value="2033">2033</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Sau khi chuyển thì chi phí sinh hoạt giảm (%)</label>
+                                    <select class="form-select" id="moveExpenseReduction">
+                                        <option value="0.10">10%</option>
+                                        <option value="0.12">12%</option>
+                                        <option value="0.15" selected>15%</option>
+                                        <option value="0.18">18%</option>
+                                        <option value="0.20">20%</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Con cái lập gia đình vào năm</label>
+                                    <select class="form-select" id="childMarriageYear">
+                                        <option value="2048">2048</option>
+                                        <option value="2049">2049</option>
+                                        <option value="2050" selected>2050</option>
+                                        <option value="2051">2051</option>
+                                        <option value="2052">2052</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Sau sự kiện này thì chi phí sinh hoạt giảm (%)</label>
+                                    <select class="form-select" id="marriageExpenseReduction">
+                                        <option value="0.25">25%</option>
+                                        <option value="0.28">28%</option>
+                                        <option value="0.30" selected>30%</option>
+                                        <option value="0.32">32%</option>
+                                        <option value="0.35">35%</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-calculate w-100" id="calculateBtn">Tính toán kế hoạch tài chính</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        Bảng dòng tiền
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="table table-bordered table-striped" id="cashflowTable">
+                                <thead>
+                                    <tr>
+                                        <th>Năm</th>
+                                        <th>Tài sản đầu năm</th>
+                                        <th>Sổ TK đầu năm</th>
+                                        <th>Chứng khoán đầu năm</th>
+                                        <th>Chi tiêu năm</th>
+                                        <th>Lãi sổ TK</th>
+                                        <th>Lãi CK</th>
+                                        <th>Thu nhập năm</th>
+                                        <th>Thặng dư</th>
+                                        <th>Sổ TK cuối năm</th>
+                                        <th>CK cuối năm</th>
+                                        <th>Tài sản cuối năm</th>
+                                        <th>Ghi chú</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cashflowBody">
+                                    <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('calculateBtn').addEventListener('click', function() {
+            calculateFinancialPlan();
+        });
+
+        function calculateFinancialPlan() {
+            // Lấy giá trị từ form
+            const savings = parseFloat(document.getElementById('savings').value);
+            const stocks = parseFloat(document.getElementById('stocks').value);
+            const land = parseFloat(document.getElementById('land').value);
+            const lumi = parseFloat(document.getElementById('lumi').value);
+            
+            const savingInterest = parseFloat(document.getElementById('savingInterest').value);
+            const stockInterest = parseFloat(document.getElementById('stockInterest').value);
+            const inflation = parseFloat(document.getElementById('inflation').value);
+            
+            const monthlyExpense = parseFloat(document.getElementById('monthlyExpense').value);
+            const monthlySalary = parseFloat(document.getElementById('monthlySalary').value);
+            
+            const stopWorkMonth = parseInt(document.getElementById('stopWorkMonth').value);
+            const stopWorkYear = parseInt(document.getElementById('stopWorkYear').value);
+            
+            const savingAllocation = parseFloat(document.getElementById('savingAllocation').value) / 100;
+            const stockAllocation = parseFloat(document.getElementById('stockAllocation').value) / 100;
+            
+            const moveYear = parseInt(document.getElementById('moveYear').value);
+            const moveExpenseReduction = parseFloat(document.getElementById('moveExpenseReduction').value);
+            const childMarriageYear = parseInt(document.getElementById('childMarriageYear').value);
+            const marriageExpenseReduction = parseFloat(document.getElementById('marriageExpenseReduction').value);
+            
+            // Tính toán BH thất nghiệp (16 năm đóng BHXH, mức đóng 17.6 triệu/tháng)
+            const unemploymentBenefit = 17.6 * 12 * 0.6; // 60% mức lương đóng BH
+            
+            // Khởi tạo biến
+            let currentYear = 2026;
+            let endYear = currentYear + 40;
+            
+            let currentSavings = savings;
+            let currentStocks = stocks;
+            let currentLand = land;
+            let currentLumi = lumi;
+            
+            let yearlyExpense = monthlyExpense * 12;
+            let yearlySalary = monthlySalary * 12;
+            
+            const cashflowBody = document.getElementById('cashflowBody');
+            cashflowBody.innerHTML = '';
+            
+            // Biến cho thu nhập thụ động
+            const passiveIncome1Start = parseInt(document.getElementById('passiveIncome1Start').value);
+            const passiveIncome1End = document.getElementById('passiveIncome1End').value ? 
+                                      parseInt(document.getElementById('passiveIncome1End').value) : null;
+            const passiveIncome1Amount = parseFloat(document.getElementById('passiveIncome1Amount').value) * 12;
+            const passiveIncome1Growth = parseFloat(document.getElementById('passiveIncome1Growth').value);
+            
+            // Tính toán cho từng năm
+            for (let year = currentYear; year <= endYear; year++) {
+                // Tính tài sản đầu năm
+                const assetsStart = currentSavings + currentStocks + currentLand + currentLumi;
+                
+                // Tính lãi từ sổ tiết kiệm và chứng khoán
+                const savingInterestEarned = currentSavings * savingInterest;
+                const stockInterestEarned = currentStocks * stockInterest;
+                
+                // Tính thu nhập năm
+                let income = 0;
+                
+                // Thu nhập từ lương (chỉ tính đến khi nghỉ việc)
+                if (year < stopWorkYear || (year === stopWorkYear && stopWorkMonth === 12)) {
+                    income += yearlySalary;
+                }
+                
+                // BH thất nghiệp (năm sau khi nghỉ việc)
+                if (year === stopWorkYear + 1) {
+                    income += unemploymentBenefit;
+                }
+                
+                // Thu nhập thụ động
+                if (year >= passiveIncome1Start && (!passiveIncome1End || year <= passiveIncome1End)) {
+                    const yearsPassive = year - passiveIncome1Start;
+                    const passiveGrowth = Math.pow(1 + passiveIncome1Growth, yearsPassive);
+                    income += passiveIncome1Amount * passiveGrowth;
+                }
+                
+                // Tính chi tiêu năm (có tính lạm phát và các sự kiện)
+                let expenseThisYear = yearlyExpense;
+                
+                // Áp dụng lạm phát (trừ năm đầu tiên)
+                if (year > currentYear) {
+                    expenseThisYear *= (1 + inflation);
+                }
+                
+                // Áp dụng giảm chi tiêu khi chuyển chỗ ở
+                if (year === moveYear) {
+                    expenseThisYear *= (1 - moveExpenseReduction);
+                }
+                
+                // Áp dụng giảm chi tiêu khi con cái lập gia đình
+                if (year === childMarriageYear) {
+                    expenseThisYear *= (1 - marriageExpenseReduction);
+                }
+                
+                // Tính thặng dư/thâm hụt
+                const totalIncome = savingInterestEarned + stockInterestEarned + income;
+                const surplus = totalIncome - expenseThisYear;
+                
+                // Xử lý các sự kiện đặc biệt
+                let notes = '';
+                
+                // Mua full nhà Lumi năm 2027
+                if (year === 2027) {
+                    const lumiFullPrice = 5.5; // tỷ
+                    const familySupport = 0.5; // tỷ
+                    
+                    // Chuyển 3.7 tỷ từ sổ TK + 0.5 tỷ hỗ trợ để mua nhà Lumi
+                    currentSavings -= 3.7;
+                    currentSavings += familySupport;
+                    currentLumi = lumiFullPrice;
+                    
+                    notes += "Mua full nhà Lumi; ";
+                }
+                
+                // Bán đất lần 1 năm 2027
+                if (year === 2027) {
+                    const landSale1Value = 0; // tỷ
+                    const toSavings1 = 0; // tỷ
+                    const toStocks1 = 0; // tỷ
+                    
+                    currentLand -= landSale1Value;
+                    currentSavings += toSavings1;
+                    currentStocks += toStocks1;
+                    
+                    if (landSale1Value > 0) {
+                        notes += "Bán đất lần 1; ";
+                    }
+                }
+                
+                // Bán đất lần 2 năm 2028
+                if (year === 2028) {
+                    const landSale2Value = 2.7; // tỷ
+                    const toSavings2 = 2.0; // tỷ
+                    const toStocks2 = 0.7; // tỷ
+                    
+                    currentLand -= landSale2Value;
+                    currentSavings += toSavings2;
+                    currentStocks += toStocks2;
+                    
+                    notes += "Bán đất lần 2; ";
+                }
+                
+                // Bán nhà Lumi năm 2031
+                if (year === 2031) {
+                    const lumiSaleValue = 7.0; // tỷ
+                    const newHousePrice = 3.0; // tỷ
+                    
+                    currentLumi = 0;
+                    currentSavings += (lumiSaleValue - newHousePrice);
+                    
+                    notes += "Bán nhà Lumi, mua nhà mới; ";
+                }
+                
+                // Xử lý thặng dư/thâm hụt
+                if (surplus > 0) {
+                    // Thặng dư: phân bổ theo tỷ lệ đã chọn
+                    currentSavings += surplus * savingAllocation;
+                    currentStocks += surplus * stockAllocation;
+                } else {
+                    // Thâm hụt: rút từ sổ tiết kiệm
+                    currentSavings += surplus; // surplus âm nên sẽ trừ đi
+                }
+                
+                // Đảm bảo giá trị không âm
+                if (currentSavings < 0) currentSavings = 0;
+                if (currentStocks < 0) currentStocks = 0;
+                
+                // Tính tài sản cuối năm
+                const assetsEnd = currentSavings + currentStocks + currentLand + currentLumi;
+                
+                // Thêm dòng vào bảng
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${year}</td>
+                    <td>${formatMoney(assetsStart)}</td>
+                    <td>${formatMoney(currentSavings)}</td>
+                    <td>${formatMoney(currentStocks)}</td>
+                    <td>${formatMoney(expenseThisYear)}</td>
+                    <td>${formatMoney(savingInterestEarned)}</td>
+                    <td>${formatMoney(stockInterestEarned)}</td>
+                    <td>${formatMoney(income)}</td>
+                    <td>${formatMoney(surplus)}</td>
+                    <td>${formatMoney(currentSavings)}</td>
+                    <td>${formatMoney(currentStocks)}</td>
+                    <td>${formatMoney(assetsEnd)}</td>
+                    <td>${notes}</td>
+                `;
+                cashflowBody.appendChild(row);
+                
+                // Cập nhật chi tiêu năm sau (có tính lạm phát)
+                yearlyExpense = expenseThisYear * (1 + inflation);
+            }
+        }
+
+        function formatMoney(amount) {
+            // Định dạng số tiền (tỷ VND)
+            if (amount >= 1) {
+                return amount.toFixed(2) + ' tỷ';
+            } else {
+                return (amount * 1000).toFixed(0) + ' triệu';
+            }
+        }
+
+        // Tính toán ngay khi trang được tải
+        window.onload = function() {
+            calculateFinancialPlan();
+        };
+    </script>
 </body>
 </html>
