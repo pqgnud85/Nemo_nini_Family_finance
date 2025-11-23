@@ -49,6 +49,7 @@
         }
         .table-container {
             overflow-x: auto;
+            max-height: 600px;
         }
         table {
             width: 100%;
@@ -61,9 +62,10 @@
             top: 0;
         }
         th, td {
-            padding: 0.75rem;
+            padding: 0.5rem;
             text-align: center;
             border: 1px solid #dee2e6;
+            font-size: 0.85rem;
         }
         tr:nth-child(even) {
             background-color: #f8f9fa;
@@ -81,15 +83,24 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        .logo {
-            max-width: 200px;
-            margin: 0 auto 1rem;
-            display: block;
+        .passive-income-section {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f8f9fa;
         }
-        .note {
-            font-size: 0.9rem;
-            color: #6c757d;
-            font-style: italic;
+        .download-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
         }
     </style>
 </head>
@@ -113,85 +124,83 @@
                             <!-- TÀI SẢN HIỆN TẠI CỦA GIA ĐÌNH -->
                             <div class="form-section">
                                 <div class="form-section-title">TÀI SẢN HIỆN TẠI CỦA GIA ĐÌNH</div>
-                                <div class="mb-3">
-                                    <label class="form-label">Sổ tiết kiệm (tỷ VND)</label>
-                                    <input type="number" class="form-control" id="savings" value="4" step="0.1">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Sổ tiết kiệm (tỷ VND)</label>
+                                        <input type="number" class="form-control" id="savings" value="4" step="0.1">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Chứng khoán (tỷ VND)</label>
+                                        <input type="number" class="form-control" id="stocks" value="0.2" step="0.1">
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Chứng khoán (tỷ VND)</label>
-                                    <input type="number" class="form-control" id="stocks" value="0.2" step="0.1">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Đất (tỷ VND)</label>
-                                    <input type="number" class="form-control" id="land" value="2.7" step="0.1">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Chung cư Lumi (tỷ VND)</label>
-                                    <input type="number" class="form-control" id="lumi" value="1.8" step="0.1">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Đất (tỷ VND)</label>
+                                        <input type="number" class="form-control" id="land" value="2.7" step="0.1">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Chung cư Lumi (tỷ VND)</label>
+                                        <input type="number" class="form-control" id="lumi" value="1.8" step="0.1">
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- THÔNG SỐ CHUNG CỦA THỊ TRƯỜNG -->
                             <div class="form-section">
                                 <div class="form-section-title">THÔNG SỐ CHUNG CỦA THỊ TRƯỜNG</div>
-                                <div class="mb-3">
-                                    <label class="form-label">Lãi suất gửi tiết kiệm/năm (%)</label>
-                                    <select class="form-select" id="savingInterest">
-                                        <option value="0.04">4%</option>
-                                        <option value="0.05">5%</option>
-                                        <option value="0.06" selected>6%</option>
-                                        <option value="0.07">7%</option>
-                                        <option value="0.08">8%</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Lãi suất chứng khoán/chứng chỉ quỹ/năm (%)</label>
-                                    <select class="form-select" id="stockInterest">
-                                        <option value="0.06">6%</option>
-                                        <option value="0.07">7%</option>
-                                        <option value="0.08" selected>8%</option>
-                                        <option value="0.09">9%</option>
-                                        <option value="0.10">10%</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Lạm phát/năm (%)</label>
-                                    <select class="form-select" id="inflation">
-                                        <option value="0.02">2%</option>
-                                        <option value="0.03">3%</option>
-                                        <option value="0.04" selected>4%</option>
-                                        <option value="0.05">5%</option>
-                                        <option value="0.06">6%</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- CHI TIÊU CỦA GIA ĐÌNH -->
-                            <div class="form-section">
-                                <div class="form-section-title">CHI TIÊU CỦA GIA ĐÌNH</div>
-                                <div class="mb-3">
-                                    <label class="form-label">Mức chi tiêu/tháng (triệu VND)</label>
-                                    <input type="number" class="form-control" id="monthlyExpense" value="55" step="1">
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Lãi suất tiết kiệm/năm</label>
+                                        <select class="form-select" id="savingInterest">
+                                            <option value="0.04">4%</option>
+                                            <option value="0.05">5%</option>
+                                            <option value="0.06" selected>6%</option>
+                                            <option value="0.07">7%</option>
+                                            <option value="0.08">8%</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Lãi suất chứng khoán/năm</label>
+                                        <select class="form-select" id="stockInterest">
+                                            <option value="0.06">6%</option>
+                                            <option value="0.07">7%</option>
+                                            <option value="0.08" selected>8%</option>
+                                            <option value="0.09">9%</option>
+                                            <option value="0.10">10%</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Lạm phát/năm</label>
+                                        <select class="form-select" id="inflation">
+                                            <option value="0.02">2%</option>
+                                            <option value="0.03">3%</option>
+                                            <option value="0.04" selected>4%</option>
+                                            <option value="0.05">5%</option>
+                                            <option value="0.06">6%</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- THU NHẬP CỦA GIA ĐÌNH -->
+                            <!-- CHI TIÊU & THU NHẬP -->
                             <div class="form-section">
-                                <div class="form-section-title">THU NHẬP CỦA GIA ĐÌNH</div>
-                                <div class="mb-3">
-                                    <label class="form-label">Thu nhập từ lương/tháng (triệu VND)</label>
-                                    <input type="number" class="form-control" id="monthlySalary" value="100" step="1">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Thời điểm dừng làm việc</label>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <select class="form-select" id="stopWorkMonth">
-                                                <option value="1">Tháng 1</option>
-                                                <option value="12" selected>Tháng 12</option>
-                                            </select>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-section-title">CHI TIÊU</div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Chi tiêu/tháng (triệu)</label>
+                                            <input type="number" class="form-control" id="monthlyExpense" value="55" step="1">
                                         </div>
-                                        <div class="col-6">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-section-title">THU NHẬP LƯƠNG</div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Lương/tháng (triệu)</label>
+                                            <input type="number" class="form-control" id="monthlySalary" value="100" step="1">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Nghỉ việc năm</label>
                                             <select class="form-select" id="stopWorkYear">
                                                 <option value="2025">2025</option>
                                                 <option value="2026">2026</option>
@@ -202,124 +211,232 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Tỉ lệ phân bổ nếu có thặng dư</label>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label class="form-label">Sổ tiết kiệm (%)</label>
-                                            <input type="number" class="form-control" id="savingAllocation" value="100" min="0" max="100">
-                                        </div>
-                                        <div class="col-6">
-                                            <label class="form-label">Chứng khoán (%)</label>
-                                            <input type="number" class="form-control" id="stockAllocation" value="0" min="0" max="100">
-                                        </div>
-                                    </div>
-                                </div>
+                            </div>
+
+                            <!-- THU NHẬP THỤ ĐỘNG -->
+                            <div class="form-section">
+                                <div class="form-section-title">THU NHẬP THỤ ĐỘNG</div>
                                 
-                                <!-- Thu nhập thụ động -->
-                                <div class="mb-3">
-                                    <div class="form-section-title">THU NHẬP THỤ ĐỘNG</div>
-                                    
-                                    <!-- Nguồn 1 -->
-                                    <div class="mb-3 border p-3 rounded">
-                                        <h6>Nguồn số 1</h6>
-                                        <div class="mb-2">
-                                            <label class="form-label">Đặt tên nguồn tiền</label>
-                                            <input type="text" class="form-control" id="passiveIncome1Name" value="Cho thuê bất động sản">
+                                <!-- Nguồn 1 -->
+                                <div class="passive-income-section">
+                                    <h6>Nguồn thu nhập 1</h6>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Tên nguồn thu</label>
+                                            <input type="text" class="form-control" id="passiveIncome1Name" value="Cho thuê BĐS">
                                         </div>
-                                        <div class="mb-2">
-                                            <label class="form-label">Thu nhập/tháng (triệu VND)</label>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Thu nhập/tháng (triệu)</label>
                                             <input type="number" class="form-control" id="passiveIncome1Amount" value="20" step="1">
                                         </div>
-                                        <div class="row mb-2">
-                                            <div class="col-6">
-                                                <label class="form-label">Năm bắt đầu</label>
-                                                <select class="form-select" id="passiveIncome1Start">
-                                                    <option value="2026">2026</option>
-                                                    <option value="2027">2027</option>
-                                                    <option value="2028" selected>2028</option>
-                                                    <option value="2029">2029</option>
-                                                    <option value="2030">2030</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-6">
-                                                <label class="form-label">Năm kết thúc</label>
-                                                <select class="form-select" id="passiveIncome1End">
-                                                    <option value="">Không có</option>
-                                                    <option value="2035">2035</option>
-                                                    <option value="2040">2040</option>
-                                                    <option value="2045">2045</option>
-                                                    <option value="2050">2050</option>
-                                                </select>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Năm bắt đầu</label>
+                                            <select class="form-select" id="passiveIncome1Start">
+                                                <option value="2028" selected>2028</option>
+                                                <option value="2029">2029</option>
+                                                <option value="2030">2030</option>
+                                            </select>
                                         </div>
-                                        <div class="mb-2">
-                                            <label class="form-label">Tỉ lệ tăng thu nhập thụ động/năm (%)</label>
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Năm kết thúc</label>
+                                            <select class="form-select" id="passiveIncome1End">
+                                                <option value="">Không kết thúc</option>
+                                                <option value="2035">2035</option>
+                                                <option value="2040">2040</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Tăng trưởng/năm</label>
                                             <select class="form-select" id="passiveIncome1Growth">
                                                 <option value="0.00">0%</option>
                                                 <option value="0.01" selected>1%</option>
                                                 <option value="0.02">2%</option>
-                                                <option value="0.03">3%</option>
-                                                <option value="0.04">4%</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Nguồn 2 -->
+                                <div class="passive-income-section">
+                                    <h6>Nguồn thu nhập 2</h6>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Tên nguồn thu</label>
+                                            <input type="text" class="form-control" id="passiveIncome2Name" value="">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Thu nhập/tháng (triệu)</label>
+                                            <input type="number" class="form-control" id="passiveIncome2Amount" value="0" step="1">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Năm bắt đầu</label>
+                                            <select class="form-select" id="passiveIncome2Start">
+                                                <option value="">Chọn năm</option>
+                                                <option value="2028">2028</option>
+                                                <option value="2029">2029</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Năm kết thúc</label>
+                                            <select class="form-select" id="passiveIncome2End">
+                                                <option value="">Không kết thúc</option>
+                                                <option value="2035">2035</option>
+                                            <option value="2040">2040</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Tăng trưởng/năm</label>
+                                            <select class="form-select" id="passiveIncome2Growth">
+                                                <option value="0.00">0%</option>
+                                                <option value="0.01">1%</option>
+                                                <option value="0.02">2%</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Nguồn 3 -->
+                                <div class="passive-income-section">
+                                    <h6>Nguồn thu nhập 3</h6>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Tên nguồn thu</label>
+                                            <input type="text" class="form-control" id="passiveIncome3Name" value="">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Thu nhập/tháng (triệu)</label>
+                                            <input type="number" class="form-control" id="passiveIncome3Amount" value="0" step="1">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Năm bắt đầu</label>
+                                            <select class="form-select" id="passiveIncome3Start">
+                                                <option value="">Chọn năm</option>
+                                                <option value="2028">2028</option>
+                                                <option value="2029">2029</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Năm kết thúc</label>
+                                            <select class="form-select" id="passiveIncome3End">
+                                                <option value="">Không kết thúc</option>
+                                                <option value="2035">2035</option>
+                                                <option value="2040">2040</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Tăng trưởng/năm</label>
+                                            <select class="form-select" id="passiveIncome3Growth">
+                                                <option value="0.00">0%</option>
+                                                <option value="0.01">1%</option>
+                                                <option value="0.02">2%</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Nguồn 4 -->
+                                <div class="passive-income-section">
+                                    <h6>Nguồn thu nhập 4</h6>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Tên nguồn thu</label>
+                                            <input type="text" class="form-control" id="passiveIncome4Name" value="">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label class="form-label">Thu nhập/tháng (triệu)</label>
+                                            <input type="number" class="form-control" id="passiveIncome4Amount" value="0" step="1">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Năm bắt đầu</label>
+                                            <select class="form-select" id="passiveIncome4Start">
+                                                <option value="">Chọn năm</option>
+                                                <option value="2028">2028</option>
+                                                <option value="2029">2029</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Năm kết thúc</label>
+                                            <select class="form-select" id="passiveIncome4End">
+                                                <option value="">Không kết thúc</option>
+                                                <option value="2035">2035</option>
+                                                <option value="2040">2040</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-2">
+                                            <label class="form-label">Tăng trưởng/năm</label>
+                                            <select class="form-select" id="passiveIncome4Growth">
+                                                <option value="0.00">0%</option>
+                                                <option value="0.01">1%</option>
+                                                <option value="0.02">2%</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PHÂN BỔ & SỰ KIỆN -->
+                            <div class="form-section">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-section-title">PHÂN BỔ THẶNG DƯ</div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Sổ tiết kiệm (%)</label>
+                                            <input type="number" class="form-control" id="savingAllocation" value="100" min="0" max="100">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Chứng khoán (%)</label>
+                                            <input type="number" class="form-control" id="stockAllocation" value="0" min="0" max="100">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-section-title">SỰ KIỆN QUAN TRỌNG</div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Chuyển sinh sống năm</label>
+                                            <select class="form-select" id="moveYear">
+                                                <option value="2031" selected>2031</option>
+                                                <option value="2032">2032</option>
+                                                <option value="2033">2033</option>
                                             </select>
                                         </div>
                                         <div class="mb-2">
-                                            <label class="form-label">Mức đầu tư (tỷ VND)</label>
-                                            <input type="number" class="form-control" id="passiveIncome1Investment" value="1" step="0.1">
+                                            <label class="form-label">Giảm chi phí sau khi chuyển</label>
+                                            <select class="form-select" id="moveExpenseReduction">
+                                                <option value="0.15" selected>15%</option>
+                                                <option value="0.20">20%</option>
+                                                <option value="0.25">25%</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Con lập gia đình năm</label>
+                                            <select class="form-select" id="childMarriageYear">
+                                                <option value="2050" selected>2050</option>
+                                                <option value="2051">2051</option>
+                                                <option value="2052">2052</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Giảm chi phí sau cưới</label>
+                                            <select class="form-select" id="marriageExpenseReduction">
+                                                <option value="0.30" selected>30%</option>
+                                                <option value="0.35">35%</option>
+                                                <option value="0.40">40%</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    
-                                    <!-- Các nguồn thu nhập thụ động khác (2, 3, 4) -->
-                                    <!-- Để đơn giản, tôi chỉ hiển thị nguồn 1, bạn có thể thêm các nguồn khác tương tự -->
                                 </div>
                             </div>
 
-                            <!-- MỘT SỐ MỐC SỰ KIỆN -->
-                            <div class="form-section">
-                                <div class="form-section-title">MỘT SỐ MỐC SỰ KIỆN</div>
-                                <div class="mb-3">
-                                    <label class="form-label">Chuyển sinh sống nơi khác ở năm</label>
-                                    <select class="form-select" id="moveYear">
-                                        <option value="2029">2029</option>
-                                        <option value="2030">2030</option>
-                                        <option value="2031" selected>2031</option>
-                                        <option value="2032">2032</option>
-                                        <option value="2033">2033</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Sau khi chuyển thì chi phí sinh hoạt giảm (%)</label>
-                                    <select class="form-select" id="moveExpenseReduction">
-                                        <option value="0.10">10%</option>
-                                        <option value="0.12">12%</option>
-                                        <option value="0.15" selected>15%</option>
-                                        <option value="0.18">18%</option>
-                                        <option value="0.20">20%</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Con cái lập gia đình vào năm</label>
-                                    <select class="form-select" id="childMarriageYear">
-                                        <option value="2048">2048</option>
-                                        <option value="2049">2049</option>
-                                        <option value="2050" selected>2050</option>
-                                        <option value="2051">2051</option>
-                                        <option value="2052">2052</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Sau sự kiện này thì chi phí sinh hoạt giảm (%)</label>
-                                    <select class="form-select" id="marriageExpenseReduction">
-                                        <option value="0.25">25%</option>
-                                        <option value="0.28">28%</option>
-                                        <option value="0.30" selected>30%</option>
-                                        <option value="0.32">32%</option>
-                                        <option value="0.35">35%</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <button type="button" class="btn btn-calculate w-100" id="calculateBtn">Tính toán kế hoạch tài chính</button>
+                            <button type="button" class="btn btn-calculate w-100" id="calculateBtn">
+                                🚀 TÍNH TOÁN KẾ HOẠCH TÀI CHÍNH
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -328,7 +445,7 @@
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-header">
-                        Bảng dòng tiền
+                        📊 BẢNG DÒNG TIỀN (40 NĂM)
                     </div>
                     <div class="card-body">
                         <div class="table-container">
@@ -361,11 +478,11 @@
         </div>
     </div>
 
+    <button class="download-btn" onclick="downloadHTML()">💾 Tải File HTML</button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById('calculateBtn').addEventListener('click', function() {
-            calculateFinancialPlan();
-        });
+        document.getElementById('calculateBtn').addEventListener('click', calculateFinancialPlan);
 
         function calculateFinancialPlan() {
             // Lấy giá trị từ form
@@ -381,7 +498,6 @@
             const monthlyExpense = parseFloat(document.getElementById('monthlyExpense').value);
             const monthlySalary = parseFloat(document.getElementById('monthlySalary').value);
             
-            const stopWorkMonth = parseInt(document.getElementById('stopWorkMonth').value);
             const stopWorkYear = parseInt(document.getElementById('stopWorkYear').value);
             
             const savingAllocation = parseFloat(document.getElementById('savingAllocation').value) / 100;
@@ -392,8 +508,8 @@
             const childMarriageYear = parseInt(document.getElementById('childMarriageYear').value);
             const marriageExpenseReduction = parseFloat(document.getElementById('marriageExpenseReduction').value);
             
-            // Tính toán BH thất nghiệp (16 năm đóng BHXH, mức đóng 17.6 triệu/tháng)
-            const unemploymentBenefit = 17.6 * 12 * 0.6; // 60% mức lương đóng BH
+            // Tính toán BH thất nghiệp
+            const unemploymentBenefit = 17.6 * 12 * 0.6;
             
             // Khởi tạo biến
             let currentYear = 2026;
@@ -410,12 +526,20 @@
             const cashflowBody = document.getElementById('cashflowBody');
             cashflowBody.innerHTML = '';
             
-            // Biến cho thu nhập thụ động
-            const passiveIncome1Start = parseInt(document.getElementById('passiveIncome1Start').value);
-            const passiveIncome1End = document.getElementById('passiveIncome1End').value ? 
-                                      parseInt(document.getElementById('passiveIncome1End').value) : null;
-            const passiveIncome1Amount = parseFloat(document.getElementById('passiveIncome1Amount').value) * 12;
-            const passiveIncome1Growth = parseFloat(document.getElementById('passiveIncome1Growth').value);
+            // Thu nhập thụ động cho 4 nguồn
+            const passiveIncomes = [1, 2, 3, 4].map(i => {
+                const startElem = document.getElementById(`passiveIncome${i}Start`);
+                const endElem = document.getElementById(`passiveIncome${i}End`);
+                const amountElem = document.getElementById(`passiveIncome${i}Amount`);
+                const growthElem = document.getElementById(`passiveIncome${i}Growth`);
+                
+                return {
+                    start: startElem.value ? parseInt(startElem.value) : null,
+                    end: endElem.value ? parseInt(endElem.value) : null,
+                    amount: parseFloat(amountElem.value) * 12,
+                    growth: parseFloat(growthElem.value)
+                };
+            });
             
             // Tính toán cho từng năm
             for (let year = currentYear; year <= endYear; year++) {
@@ -429,8 +553,8 @@
                 // Tính thu nhập năm
                 let income = 0;
                 
-                // Thu nhập từ lương (chỉ tính đến khi nghỉ việc)
-                if (year < stopWorkYear || (year === stopWorkYear && stopWorkMonth === 12)) {
+                // Thu nhập từ lương
+                if (year < stopWorkYear) {
                     income += yearlySalary;
                 }
                 
@@ -439,14 +563,16 @@
                     income += unemploymentBenefit;
                 }
                 
-                // Thu nhập thụ động
-                if (year >= passiveIncome1Start && (!passiveIncome1End || year <= passiveIncome1End)) {
-                    const yearsPassive = year - passiveIncome1Start;
-                    const passiveGrowth = Math.pow(1 + passiveIncome1Growth, yearsPassive);
-                    income += passiveIncome1Amount * passiveGrowth;
-                }
+                // Thu nhập thụ động từ 4 nguồn
+                passiveIncomes.forEach(pi => {
+                    if (pi.start && year >= pi.start && (!pi.end || year <= pi.end)) {
+                        const yearsPassive = year - pi.start;
+                        const passiveGrowth = Math.pow(1 + pi.growth, yearsPassive);
+                        income += pi.amount * passiveGrowth;
+                    }
+                });
                 
-                // Tính chi tiêu năm (có tính lạm phát và các sự kiện)
+                // Tính chi tiêu năm
                 let expenseThisYear = yearlyExpense;
                 
                 // Áp dụng lạm phát (trừ năm đầu tiên)
@@ -473,64 +599,32 @@
                 
                 // Mua full nhà Lumi năm 2027
                 if (year === 2027) {
-                    const lumiFullPrice = 5.5; // tỷ
-                    const familySupport = 0.5; // tỷ
-                    
-                    // Chuyển 3.7 tỷ từ sổ TK + 0.5 tỷ hỗ trợ để mua nhà Lumi
-                    currentSavings -= 3.7;
-                    currentSavings += familySupport;
-                    currentLumi = lumiFullPrice;
-                    
+                    currentSavings -= 3.2; // 3.7 tỷ - 0.5 tỷ hỗ trợ
+                    currentLumi = 5.5;
                     notes += "Mua full nhà Lumi; ";
-                }
-                
-                // Bán đất lần 1 năm 2027
-                if (year === 2027) {
-                    const landSale1Value = 0; // tỷ
-                    const toSavings1 = 0; // tỷ
-                    const toStocks1 = 0; // tỷ
-                    
-                    currentLand -= landSale1Value;
-                    currentSavings += toSavings1;
-                    currentStocks += toStocks1;
-                    
-                    if (landSale1Value > 0) {
-                        notes += "Bán đất lần 1; ";
-                    }
                 }
                 
                 // Bán đất lần 2 năm 2028
                 if (year === 2028) {
-                    const landSale2Value = 2.7; // tỷ
-                    const toSavings2 = 2.0; // tỷ
-                    const toStocks2 = 0.7; // tỷ
-                    
-                    currentLand -= landSale2Value;
-                    currentSavings += toSavings2;
-                    currentStocks += toStocks2;
-                    
+                    currentLand -= 2.7;
+                    currentSavings += 2.0;
+                    currentStocks += 0.7;
                     notes += "Bán đất lần 2; ";
                 }
                 
                 // Bán nhà Lumi năm 2031
                 if (year === 2031) {
-                    const lumiSaleValue = 7.0; // tỷ
-                    const newHousePrice = 3.0; // tỷ
-                    
                     currentLumi = 0;
-                    currentSavings += (lumiSaleValue - newHousePrice);
-                    
-                    notes += "Bán nhà Lumi, mua nhà mới; ";
+                    currentSavings += 4; // 7 tỷ - 3 tỷ mua nhà mới
+                    notes += "Bán nhà Lumi; ";
                 }
                 
                 // Xử lý thặng dư/thâm hụt
                 if (surplus > 0) {
-                    // Thặng dư: phân bổ theo tỷ lệ đã chọn
                     currentSavings += surplus * savingAllocation;
                     currentStocks += surplus * stockAllocation;
                 } else {
-                    // Thâm hụt: rút từ sổ tiết kiệm
-                    currentSavings += surplus; // surplus âm nên sẽ trừ đi
+                    currentSavings += surplus;
                 }
                 
                 // Đảm bảo giá trị không âm
@@ -559,13 +653,12 @@
                 `;
                 cashflowBody.appendChild(row);
                 
-                // Cập nhật chi tiêu năm sau (có tính lạm phát)
-                yearlyExpense = expenseThisYear * (1 + inflation);
+                // Cập nhật chi tiêu năm sau
+                yearlyExpense = expenseThisYear;
             }
         }
 
         function formatMoney(amount) {
-            // Định dạng số tiền (tỷ VND)
             if (amount >= 1) {
                 return amount.toFixed(2) + ' tỷ';
             } else {
@@ -573,10 +666,21 @@
             }
         }
 
+        function downloadHTML() {
+            const htmlContent = document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ke_hoach_tai_chinh_nemo_nini.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
         // Tính toán ngay khi trang được tải
-        window.onload = function() {
-            calculateFinancialPlan();
-        };
+        window.onload = calculateFinancialPlan;
     </script>
 </body>
 </html>
