@@ -4,683 +4,1217 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tự do tài chính - Nemo Nini Family</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tải Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tải font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
+            font-family: 'Inter', sans-serif;
         }
-        .header {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            margin-bottom: 2rem;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        /* Ẩn mũi tên tăng/giảm của input[type=number] */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
-        .container {
-            max-width: 1200px;
+        input[type="number"] {
+            -moz-appearance: textfield;
         }
-        .card {
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-            border: none;
-        }
-        .card-header {
-            background-color: #2a5298;
-            color: white;
-            border-radius: 10px 10px 0 0 !important;
-            padding: 1rem 1.5rem;
-            font-weight: 600;
-        }
-        .form-section {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
-        }
-        .form-section-title {
-            font-weight: 600;
-            color: #2a5298;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        .table-container {
-            overflow-x: auto;
-            max-height: 600px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th {
-            background-color: #2a5298;
-            color: white;
-            position: sticky;
-            top: 0;
-        }
-        th, td {
-            padding: 0.5rem;
-            text-align: center;
-            border: 1px solid #dee2e6;
-            font-size: 0.85rem;
-        }
-        tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-        .btn-calculate {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            border: none;
-            padding: 0.75rem 2rem;
-            font-weight: 600;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-        .btn-calculate:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .passive-income-section {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            background-color: #f8f9fa;
-        }
-        .download-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+        /* Tùy chỉnh mũi tên cho <details> */
+        summary {
+            list-style: none; /* Xóa mũi tên mặc định */
             cursor: pointer;
-            z-index: 1000;
         }
+        summary::-webkit-details-marker {
+            display: none; /* Xóa mũi tên cho Chrome */
+        }
+        /* Icon mũi tên tùy chỉnh */
+        details[open] summary .arrow-icon {
+            transform: rotate(90deg);
+        }
+
+        .input-group {
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+        .input-label {
+            display: block;
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500;
+            color: #475569; /* slate-600 */
+            margin-bottom: 0.25rem; /* mb-1 */
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.5rem; /* p-2 */
+            border: 1px solid #CBD5E1; /* slate-300 */
+            border-radius: 0.375rem; /* rounded-md */
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #4F46E5; /* focus:border-indigo-600 */
+            box-shadow: 0 0 0 1px #4F46E5; /* focus:ring-indigo-600 */
+        }
+        .sticky-form {
+            position: sticky;
+            top: 1.5rem; /* top-6 */
+            align-self: start;
+        }
+
+        /* Kiểu cho khung phân tích */
+        #analysisOutput h3 {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
+            color: #1e293b; /* slate-800 */
+            margin-top: 1rem;
+            border-bottom: 1px solid #e2e8f0; /* border-slate-200 */
+            padding-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+        }
+        #analysisOutput p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #475569; /* slate-600 */
+        }
+         #analysisOutput p .highlight-bad {
+            font-weight: 700;
+            color: #DC2626; /* red-600 */
+         }
+         #analysisOutput p .highlight-good {
+            font-weight: 700;
+            color: #16A34A; /* green-600 */
+         }
+         #analysisOutput ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            color: #475569; /* slate-600 */
+         }
+
     </style>
 </head>
-<body>
-    <div class="header">
-        <div class="container">
-            <h1>Tự do tài chính - Nemo Nini Family</h1>
-            <p class="lead">Lập kế hoạch tài chính cho tương lai của gia đình bạn</p>
-        </div>
-    </div>
+<body class="bg-slate-50">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        Hãy nhập các thông tin giả định về kế hoạch tài chính của bạn
-                    </div>
-                    <div class="card-body">
-                        <form id="financialForm">
-                            <!-- TÀI SẢN HIỆN TẠI CỦA GIA ĐÌNH -->
-                            <div class="form-section">
-                                <div class="form-section-title">TÀI SẢN HIỆN TẠI CỦA GIA ĐÌNH</div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Sổ tiết kiệm (tỷ VND)</label>
-                                        <input type="number" class="form-control" id="savings" value="4" step="0.1">
+    <div class="container max-w-screen-2xl mx-auto bg-white shadow-xl rounded-lg my-8 overflow-hidden">
+        <header class="p-8 text-center bg-gradient-to-r from-blue-700 to-indigo-800 text-white shadow-lg">
+            <h1 class="text-4xl font-bold">Tự do tài chính - Nemo Nini Family</h1>
+            <!-- Cập nhật ảnh: dùng placeholder để đảm bảo hiển thị -->
+            <img src="https://placehold.co/600x300/4F46E5/ffffff?text=K%E1%BA%BF+Ho%E1%BA%A1ch+T%C3%A0i+Ch%C3%ADnh+Gia+%C4%90%C3%ACnh" 
+                 alt="Kế hoạch Tài chính Gia đình" 
+                 class="mx-auto rounded-lg shadow-md mt-6 w-full max-w-lg border-4 border-white/50">
+        </header>
+
+        <main class="p-8">
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+            
+                <!-- CỘT NHẬP DỮ LIỆU -->
+                <div class="xl:col-span-1 space-y-4 sticky-form">
+                    <h2 class="text-2xl font-bold text-slate-900 border-b pb-2 flex items-center">
+                        <!-- Icon Bút chì (Heroicons) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                        Hãy nhập các thông tin giả định
+                    </h2>
+                    
+                    <button id="calculateButton" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg shadow-md hover:bg-indigo-700 transition duration-300 text-lg flex items-center justify-center">
+                         <!-- Icon Máy tính (Heroicons) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 00-1 1v1a1 1 0 001 1h6a1 1 0 001-1V5a1 1 0 00-1-1H7zm0 4a1 1 0 00-1 1v1a1 1 0 001 1h6a1 1 0 001-1v-1a1 1 0 00-1-1H7zm0 4a1 1 0 00-1 1v1a1 1 0 001 1h6a1 1 0 001-1v-1a1 1 0 00-1-1H7z" clip-rule="evenodd" />
+                        </svg>
+                        Tính toán & Cập nhật
+                    </button>
+                    
+                    <p class="text-sm text-slate-600 bg-slate-100 p-3 rounded-md">Lưu ý: Tất cả các giá trị tiền tệ đều được nhập với đơn vị là <strong class="text-red-600">Triệu VNĐ</strong> (ví dụ: 4 tỉ = 4000, 55 triệu = 55).</p>
+
+                    <div class="max-h-[65vh] overflow-y-auto pr-2 space-y-4">
+                        <details class="bg-white shadow-md rounded-lg border border-slate-200" open>
+                            <summary class="flex items-center justify-between p-4 font-semibold text-lg text-slate-800">
+                                <div class="flex items-center">
+                                    <!-- Icon Thẻ (Heroicons) -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H7a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                    </svg>
+                                    2.0. TÀI SẢN HIỆN TẠI
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-500 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200">
+                                <div class="input-group">
+                                    <label for="savings" class="input-label">Sổ tiết kiệm (Triệu VNĐ)</label>
+                                    <input type="number" id="savings" class="input-field" value="4000">
+                                </div>
+                                <div class="input-group">
+                                    <label for="stocks" class="input-label">Chứng khoán (Triệu VNĐ)</label>
+                                    <input type="number" id="stocks" class="input-field" value="200">
+                                </div>
+                                <div class="input-group">
+                                    <label for="land" class="input-label">Đất (Triệu VNĐ)</label>
+                                    <input type="number" id="land" class="input-field" value="2700">
+                                </div>
+                                <div class="input-group">
+                                    <label for="lumi" class="input-label">Chung cư Lumi (Giá trị ban đầu) (Triệu VNĐ)</label>
+                                    <input type="number" id="lumi" class="input-field" value="1800">
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="bg-white shadow-md rounded-lg border border-slate-200">
+                            <summary class="flex items-center justify-between p-4 font-semibold text-lg text-slate-800">
+                                <div class="flex items-center">
+                                    <!-- Icon Trend (Heroicons) -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                    </svg>
+                                    2.1. THÔNG SỐ THỊ TRƯỜNG
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-500 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200">
+                                <div class="input-group">
+                                    <label for="savingsRate" class="input-label">Lãi suất gửi tiết kiệm/năm</label>
+                                    <select id="savingsRate" class="input-field"> <!-- JS --> </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="stocksRate" class="input-label">Lãi suất chứng khoán/năm</label>
+                                    <select id="stocksRate" class="input-field"> <!-- JS --> </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="inflation" class="input-label">Lạm phát/năm</label>
+                                    <select id="inflation" class="input-field"> <!-- JS --> </select>
+                                </div>
+                            </div>
+                        </details>
+                        
+                        <details class="bg-white shadow-md rounded-lg border border-slate-200">
+                            <summary class="flex items-center justify-between p-4 font-semibold text-lg text-slate-800">
+                                <div class="flex items-center">
+                                    <!-- Icon Giỏ hàng (Heroicons) -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                    </svg>
+                                    2.2. CHI TIÊU GIA ĐÌNH
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-500 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200">
+                                <div class="input-group">
+                                    <label for="monthlyExpense" class="input-label">Mức chi tiêu/tháng (Triệu VNĐ)</label>
+                                    <input type="number" id="monthlyExpense" class="input-field" value="55">
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="bg-white shadow-md rounded-lg border border-slate-200" open>
+                            <summary class="flex items-center justify-between p-4 font-semibold text-lg text-slate-800">
+                                <div class="flex items-center">
+                                    <!-- Icon Dollar (Heroicons) -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0c1.657 0 3-.895 3-2s-1.343-2-3-2-3-.895-3-2 1.343-2 3-2m0 8c-1.11 0-2.08-.402-2.599-1M12 16v1" />
+                                    </svg>
+                                    2.3. THU NHẬP GIA ĐÌNH (LƯƠNG)
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-500 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200 space-y-4">
+                                <!-- Thu nhập VỢ -->
+                                <div class="border p-3 rounded-md bg-slate-50">
+                                    <h4 class="font-semibold text-indigo-600">Thu nhập VỢ</h4>
+                                    <div class="input-group">
+                                        <label for="wifeSalary" class="input-label">Thu nhập/tháng (Triệu VNĐ)</label>
+                                        <input type="number" id="wifeSalary" class="input-field" value="50">
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Chứng khoán (tỷ VND)</label>
-                                        <input type="number" class="form-control" id="stocks" value="0.2" step="0.1">
+                                    <div class="input-group grid grid-cols-2 gap-2">
+                                        <div>
+                                            <label for="wifeRetireMonth" class="input-label">Dừng làm việc (Tháng)</label>
+                                            <select id="wifeRetireMonth" class="input-field"> <!-- JS --> </select>
+                                        </div>
+                                        <div>
+                                            <label for="wifeRetireYear" class="input-label">Dừng làm việc (Năm)</label>
+                                            <select id="wifeRetireYear" class="input-field"> <!-- JS --> </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Đất (tỷ VND)</label>
-                                        <input type="number" class="form-control" id="land" value="2.7" step="0.1">
+
+                                <!-- Thu nhập CHỒNG -->
+                                <div class="border p-3 rounded-md bg-slate-50">
+                                    <h4 class="font-semibold text-indigo-600">Thu nhập CHỒNG</h4>
+                                    <div class="input-group">
+                                        <label for="husbandSalary" class="input-label">Thu nhập/tháng (Triệu VNĐ)</label>
+                                        <input type="number" id="husbandSalary" class="input-field" value="50">
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Chung cư Lumi (tỷ VND)</label>
-                                        <input type="number" class="form-control" id="lumi" value="1.8" step="0.1">
+                                    <div class="input-group grid grid-cols-2 gap-2">
+                                        <div>
+                                            <label for="husbandRetireMonth" class="input-label">Dừng làm việc (Tháng)</label>
+                                            <select id="husbandRetireMonth" class="input-field"> <!-- JS --> </select>
+                                        </div>
+                                        <div>
+                                            <label for="husbandRetireYear" class="input-label">Dừng làm việc (Năm)</label>
+                                            <select id="husbandRetireYear" class="input-field"> <!-- JS --> </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </details>
 
-                            <!-- THÔNG SỐ CHUNG CỦA THỊ TRƯỜNG -->
-                            <div class="form-section">
-                                <div class="form-section-title">THÔNG SỐ CHUNG CỦA THỊ TRƯỜNG</div>
-                                <div class="row">
-                                    <div class="col-md-4 mb-3">
-                                        <label class="form-label">Lãi suất tiết kiệm/năm</label>
-                                        <select class="form-select" id="savingInterest">
-                                            <option value="0.04">4%</option>
-                                            <option value="0.05">5%</option>
-                                            <option value="0.06" selected>6%</option>
-                                            <option value="0.07">7%</option>
-                                            <option value="0.08">8%</option>
-                                        </select>
+                        <!-- Thu nhập thụ động và phân bổ -->
+                        <details class="bg-white shadow-md rounded-lg border border-slate-200">
+                            <summary class="flex items-center justify-between p-4 font-semibold text-lg text-slate-800">
+                                <div class="flex items-center">
+                                    <!-- Icon Ngôi nhà (Heroicons) -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                    </svg>
+                                    2.3. THU NHẬP THỤ ĐỘNG & PHÂN BỔ
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-500 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200">
+                                <!-- Thu nhập thụ động (giữ nguyên logic) -->
+                                <div class="mt-4 space-y-3">
+                                    <h4 class="font-semibold text-slate-700">Thu nhập thụ động</h4>
+                                    <!-- Nguồn 1 -->
+                                    <div class="border p-3 rounded-md bg-slate-50">
+                                        <p class="font-medium text-indigo-600">Nguồn số 1 (Cho thuê nhà)</p>
+                                        <div class="input-group">
+                                            <label for="p1_name" class="input-label">Tên nguồn</label>
+                                            <input type="text" id="p1_name" class="input-field" value="Cho thuê nhà">
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <div class="input-group">
+                                                <label for="p1_income" class="input-label">Thu nhập/tháng</label>
+                                                <input type="number" id="p1_income" class="input-field" value="20">
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="p1_invest" class="input-label">Mức đầu tư ban đầu</label>
+                                                <input type="number" id="p1_invest" class="input-field" value="1000">
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-3 gap-2">
+                                            <div class="input-group">
+                                                <label for="p1_start" class="input-label">Năm BĐ</label>
+                                                <select id="p1_start" class="input-field"><!-- JS --></select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="p1_end" class="input-label">Năm KT</label>
+                                                <select id="p1_end" class="input-field"><!-- JS --></select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="p1_growth" class="input-label">Tăng/năm</label>
+                                                <select id="p1_growth" class="input-field"><!-- JS --></select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label class="form-label">Lãi suất chứng khoán/năm</label>
-                                        <select class="form-select" id="stockInterest">
-                                            <option value="0.06">6%</option>
-                                            <option value="0.07">7%</option>
-                                            <option value="0.08" selected>8%</option>
-                                            <option value="0.09">9%</option>
-                                            <option value="0.10">10%</option>
-                                        </select>
+                                    <!-- Các nguồn khác (giữ nguyên cấu trúc) -->
+                                     <div class="border p-3 rounded-md bg-slate-50">
+                                        <p class="font-medium text-indigo-600">Nguồn số 2</p>
+                                        <div class="input-group">
+                                            <label for="p2_name" class="input-label">Tên nguồn</label>
+                                            <input type="text" id="p2_name" class="input-field" value="">
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <div class="input-group">
+                                                <label for="p2_income" class="input-label">Thu nhập/tháng</label>
+                                                <input type="number" id="p2_income" class="input-field" value="0">
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="p2_invest" class="input-label">Mức đầu tư</label>
+                                                <input type="number" id="p2_invest" class="input-field" value="0">
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-3 gap-2">
+                                            <div class="input-group">
+                                                <label for="p2_start" class="input-label">Năm BĐ</label>
+                                                <select id="p2_start" class="input-field"><!-- JS --></select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="p2_end" class="input-label">Năm KT</label>
+                                                <select id="p2_end" class="input-field"><!-- JS --></select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="p2_growth" class="input-label">Tăng/năm</label>
+                                                <select id="p2_growth" class="input-field"><!-- JS --></select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label class="form-label">Lạm phát/năm</label>
-                                        <select class="form-select" id="inflation">
-                                            <option value="0.02">2%</option>
-                                            <option value="0.03">3%</option>
-                                            <option value="0.04" selected>4%</option>
-                                            <option value="0.05">5%</option>
-                                            <option value="0.06">6%</option>
-                                        </select>
+                                     <div class="border p-3 rounded-md bg-slate-50">
+                                        <p class="font-medium text-indigo-600">Nguồn số 3</p>
+                                        <div class="input-group">
+                                            <label for="p3_name" class="input-label">Tên nguồn</label>
+                                            <input type="text" id="p3_name" class="input-field" value="">
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <div class="input-group">
+                                                <label for="p3_income" class="input-label">Thu nhập/tháng</label>
+                                                <input type="number" id="p3_income" class="input-field" value="0">
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="p3_invest" class="input-label">Mức đầu tư</label>
+                                                <input type="number" id="p3_invest" class="input-field" value="0">
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-3 gap-2">
+                                            <div class="input-group">
+                                                <label for="p3_start" class="input-label">Năm BĐ</label>
+                                                <select id="p3_start" class="input-field"><!-- JS --></select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="p3_end" class="input-label">Năm KT</label>
+                                                <select id="p3_end" class="input-field"><!-- JS --></select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="p3_growth" class="input-label">Tăng/năm</label>
+                                                <select id="p3_growth" class="input-field"><!-- JS --></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="border p-3 rounded-md bg-slate-50">
+                                        <p class="font-medium text-indigo-600">Nguồn số 4</p>
+                                        <div class="input-group">
+                                            <label for="p4_name" class="input-label">Tên nguồn</label>
+                                            <input type="text" id="p4_name" class="input-field" value="">
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <div class="input-group">
+                                                <label for="p4_income" class="input-label">Thu nhập/tháng</label>
+                                                <input type="number" id="p4_income" class="input-field" value="0">
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="p4_invest" class="input-label">Mức đầu tư</label>
+                                                <input type="number" id="p4_invest" class="input-field" value="0">
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-3 gap-2">
+                                            <div class="input-group">
+                                                <label for="p4_start" class="input-label">Năm BĐ</label>
+                                                <select id="p4_start" class="input-field"><!-- JS --></select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="p4_end" class="input-label">Năm KT</label>
+                                                <select id="p4_end" class="input-field"><!-- JS --></select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="p4_growth" class="input-label">Tăng/năm</label>
+                                                <select id="p4_growth" class="input-field"><!-- JS --></select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <!-- Phân bổ thặng dư -->
+                                <div class="mt-4">
+                                     <h4 class="font-semibold text-slate-700">Tỉ lệ phân bổ thặng dư (Tổng 100%)</h4>
+                                     <div class="grid grid-cols-2 gap-2">
+                                        <div class="input-group">
+                                            <label for="surplusToSavings" class="input-label">% vào Sổ Tiết Kiệm</label>
+                                            <select id="surplusToSavings" class="input-field"><!-- JS --></select>
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="surplusToStocks" class="input-label">% vào Chứng Khoán</label>
+                                            <select id="surplusToStocks" class="input-field"><!-- JS --></select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </details>
 
-                            <!-- CHI TIÊU & THU NHẬP -->
-                            <div class="form-section">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-section-title">CHI TIÊU</div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Chi tiêu/tháng (triệu)</label>
-                                            <input type="number" class="form-control" id="monthlyExpense" value="55" step="1">
+                        <details class="bg-white shadow-md rounded-lg border border-slate-200" open>
+                            <summary class="flex items-center justify-between p-4 font-semibold text-lg text-slate-800">
+                                <div class="flex items-center">
+                                    <!-- Icon Lịch (Heroicons) -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    2.4. MỘT SỐ MỐC SỰ KIỆN
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-500 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200 space-y-3">
+                                <div class="border p-3 rounded-md bg-slate-50 space-y-3">
+                                    <p class="font-medium">Thay đổi chi tiêu</p>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <div class="input-group">
+                                            <label for="moveYear" class="input-label">Năm chuyển nơi sống</label>
+                                            <select id="moveYear" class="input-field"><!-- JS --></select>
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="moveReduction" class="input-label">Chi phí giảm (%)</label>
+                                            <select id="moveReduction" class="input-field"><!-- JS --></select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-section-title">THU NHẬP LƯƠNG</div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Lương/tháng (triệu)</label>
-                                            <input type="number" class="form-control" id="monthlySalary" value="100" step="1">
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <div class="input-group">
+                                            <label for="childMarriageYear" class="input-label">Năm con lập gia đình</label>
+                                            <select id="childMarriageYear" class="input-field"><!-- JS --></select>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Nghỉ việc năm</label>
-                                            <select class="form-select" id="stopWorkYear">
-                                                <option value="2025">2025</option>
-                                                <option value="2026">2026</option>
-                                                <option value="2027" selected>2027</option>
-                                                <option value="2028">2028</option>
-                                                <option value="2029">2029</option>
-                                            </select>
+                                        <div class="input-group">
+                                            <label for="childMarriageReduction" class="input-label">Chi phí giảm (%)</label>
+                                            <select id="childMarriageReduction" class="input-field"><!-- JS --></select>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- THU NHẬP THỤ ĐỘNG -->
-                            <div class="form-section">
-                                <div class="form-section-title">THU NHẬP THỤ ĐỘNG</div>
+                                <div class="border p-3 rounded-md bg-slate-50 space-y-3">
+                                     <p class="font-medium">Sự kiện tài chính cố định (2027)</p>
+                                     <p class="text-sm bg-indigo-100 text-indigo-800 p-2 rounded">
+                                        <strong>Năm 2027:</strong><br>
+                                        - Mua full nhà Lumi: Chuyển <strong>3,700 Triệu</strong> từ STK.<br>
+                                        - GĐ hỗ trợ: <strong>+500 Triệu</strong> vào STK.
+                                     </p>
+                                </div>
                                 
-                                <!-- Nguồn 1 -->
-                                <div class="passive-income-section">
-                                    <h6>Nguồn thu nhập 1</h6>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-2">
-                                            <label class="form-label">Tên nguồn thu</label>
-                                            <input type="text" class="form-control" id="passiveIncome1Name" value="Cho thuê BĐS">
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <label class="form-label">Thu nhập/tháng (triệu)</label>
-                                            <input type="number" class="form-control" id="passiveIncome1Amount" value="20" step="1">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 mb-2">
-                                            <label class="form-label">Năm bắt đầu</label>
-                                            <select class="form-select" id="passiveIncome1Start">
-                                                <option value="2028" selected>2028</option>
-                                                <option value="2029">2029</option>
-                                                <option value="2030">2030</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 mb-2">
-                                            <label class="form-label">Năm kết thúc</label>
-                                            <select class="form-select" id="passiveIncome1End">
-                                                <option value="">Không kết thúc</option>
-                                                <option value="2035">2035</option>
-                                                <option value="2040">2040</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 mb-2">
-                                            <label class="form-label">Tăng trưởng/năm</label>
-                                            <select class="form-select" id="passiveIncome1Growth">
-                                                <option value="0.00">0%</option>
-                                                <option value="0.01" selected>1%</option>
-                                                <option value="0.02">2%</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Nguồn 2 -->
-                                <div class="passive-income-section">
-                                    <h6>Nguồn thu nhập 2</h6>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-2">
-                                            <label class="form-label">Tên nguồn thu</label>
-                                            <input type="text" class="form-control" id="passiveIncome2Name" value="">
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <label class="form-label">Thu nhập/tháng (triệu)</label>
-                                            <input type="number" class="form-control" id="passiveIncome2Amount" value="0" step="1">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 mb-2">
-                                            <label class="form-label">Năm bắt đầu</label>
-                                            <select class="form-select" id="passiveIncome2Start">
-                                                <option value="">Chọn năm</option>
-                                                <option value="2028">2028</option>
-                                                <option value="2029">2029</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 mb-2">
-                                            <label class="form-label">Năm kết thúc</label>
-                                            <select class="form-select" id="passiveIncome2End">
-                                                <option value="">Không kết thúc</option>
-                                                <option value="2035">2035</option>
-                                            <option value="2040">2040</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 mb-2">
-                                            <label class="form-label">Tăng trưởng/năm</label>
-                                            <select class="form-select" id="passiveIncome2Growth">
-                                                <option value="0.00">0%</option>
-                                                <option value="0.01">1%</option>
-                                                <option value="0.02">2%</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Nguồn 3 -->
-                                <div class="passive-income-section">
-                                    <h6>Nguồn thu nhập 3</h6>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-2">
-                                            <label class="form-label">Tên nguồn thu</label>
-                                            <input type="text" class="form-control" id="passiveIncome3Name" value="">
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <label class="form-label">Thu nhập/tháng (triệu)</label>
-                                            <input type="number" class="form-control" id="passiveIncome3Amount" value="0" step="1">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 mb-2">
-                                            <label class="form-label">Năm bắt đầu</label>
-                                            <select class="form-select" id="passiveIncome3Start">
-                                                <option value="">Chọn năm</option>
-                                                <option value="2028">2028</option>
-                                                <option value="2029">2029</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 mb-2">
-                                            <label class="form-label">Năm kết thúc</label>
-                                            <select class="form-select" id="passiveIncome3End">
-                                                <option value="">Không kết thúc</option>
-                                                <option value="2035">2035</option>
-                                                <option value="2040">2040</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 mb-2">
-                                            <label class="form-label">Tăng trưởng/năm</label>
-                                            <select class="form-select" id="passiveIncome3Growth">
-                                                <option value="0.00">0%</option>
-                                                <option value="0.01">1%</option>
-                                                <option value="0.02">2%</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Nguồn 4 -->
-                                <div class="passive-income-section">
-                                    <h6>Nguồn thu nhập 4</h6>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-2">
-                                            <label class="form-label">Tên nguồn thu</label>
-                                            <input type="text" class="form-control" id="passiveIncome4Name" value="">
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <label class="form-label">Thu nhập/tháng (triệu)</label>
-                                            <input type="number" class="form-control" id="passiveIncome4Amount" value="0" step="1">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 mb-2">
-                                            <label class="form-label">Năm bắt đầu</label>
-                                            <select class="form-select" id="passiveIncome4Start">
-                                                <option value="">Chọn năm</option>
-                                                <option value="2028">2028</option>
-                                                <option value="2029">2029</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 mb-2">
-                                            <label class="form-label">Năm kết thúc</label>
-                                            <select class="form-select" id="passiveIncome4End">
-                                                <option value="">Không kết thúc</option>
-                                                <option value="2035">2035</option>
-                                                <option value="2040">2040</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 mb-2">
-                                            <label class="form-label">Tăng trưởng/năm</label>
-                                            <select class="form-select" id="passiveIncome4Growth">
-                                                <option value="0.00">0%</option>
-                                                <option value="0.01">1%</option>
-                                                <option value="0.02">2%</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                <div class="border p-3 rounded-md bg-slate-50 space-y-3">
+                                     <p class="font-medium">Sự kiện Bán/Mua Tài sản</p>
+                                     <!-- Bán đất 1 -->
+                                     <p class="text-sm font-semibold">Bán đất lần 1</p>
+                                     <div class="grid grid-cols-2 gap-2">
+                                         <div class="input-group">
+                                             <label for="sellLand1Year" class="input-label">Năm</label>
+                                             <select id="sellLand1Year" class="input-field"><!-- JS --></select>
+                                         </div>
+                                         <div class="input-group">
+                                             <label for="sellLand1Value" class="input-label">Giá trị bán (Triệu)</label>
+                                             <input type="number" id="sellLand1Value" class="input-field" value="0">
+                                         </div>
+                                     </div>
+                                     <div class="grid grid-cols-2 gap-2">
+                                         <div class="input-group">
+                                             <label for="sellLand1ToSavings" class="input-label">Phân bổ vào STK (%)</label>
+                                             <select id="sellLand1ToSavings" class="input-field"></select>
+                                         </div>
+                                         <div class="input-group">
+                                             <label for="sellLand1ToStocks" class="input-label">Phân bổ vào CK (%)</label>
+                                             <select id="sellLand1ToStocks" class="input-field"></select>
+                                         </div>
+                                     </div>
+                                     <!-- Bán đất 2 -->
+                                     <p class="text-sm font-semibold">Bán đất lần 2</p>
+                                     <div class="grid grid-cols-2 gap-2">
+                                         <div class="input-group">
+                                             <label for="sellLand2Year" class="input-label">Năm</label>
+                                             <select id="sellLand2Year" class="input-field"><!-- JS --></select>
+                                         </div>
+                                         <div class="input-group">
+                                             <label for="sellLand2Value" class="input-label">Giá trị bán (Triệu)</label>
+                                             <input type="number" id="sellLand2Value" class="input-field" value="2700">
+                                         </div>
+                                     </div>
+                                     <div class="grid grid-cols-2 gap-2">
+                                         <div class="input-group">
+                                             <label for="sellLand2ToSavings" class="input-label">Phân bổ vào STK (%)</label>
+                                             <select id="sellLand2ToSavings" class="input-field"></select>
+                                         </div>
+                                         <div class="input-group">
+                                             <label for="sellLand2ToStocks" class="input-label">Phân bổ vào CK (%)</label>
+                                             <select id="sellLand2ToStocks" class="input-field"></select>
+                                         </div>
+                                     </div>
+                                     
+                                     <!-- Bán Lumi, Thuê nhà, Mua nhà mới -->
+                                     <p class="text-sm font-semibold mt-4">Sự kiện Bán Lumi, Thuê nhà & Mua nhà mới</p>
+                                     <div class="grid grid-cols-2 gap-2">
+                                         <div class="input-group">
+                                             <label for="sellLumiYear" class="input-label">Năm Bán Lumi (Tài sản Lumi = 0)</label>
+                                             <select id="sellLumiYear" class="input-field"><!-- JS --></select>
+                                         </div>
+                                         <div class="input-group">
+                                             <label for="sellLumiValue" class="input-label">Giá trị bán Lumi (Triệu)</label>
+                                             <input type="number" id="sellLumiValue" class="input-field" value="7000">
+                                         </div>
+                                     </div>
+                                     <div class="grid grid-cols-3 gap-2 border-t pt-2 mt-2">
+                                         <div class="input-group">
+                                             <label for="rentStartYear" class="input-label">Năm BĐ Thuê nhà</label>
+                                             <select id="rentStartYear" class="input-field"></select>
+                                         </div>
+                                         <div class="input-group">
+                                             <label for="rentEndYear" class="input-label">Năm KT Thuê nhà</label>
+                                             <select id="rentEndYear" class="input-field"></select>
+                                         </div>
+                                         <div class="input-group">
+                                             <label for="monthlyRentExpense" class="input-label">Chi tiêu Thuê/tháng</label>
+                                             <input type="number" id="monthlyRentExpense" class="input-field" value="10">
+                                         </div>
+                                     </div>
+                                     <div class="grid grid-cols-2 gap-2">
+                                         <div class="input-group">
+                                             <label for="newHouseBuyYear" class="input-label">Năm BĐ Mua nhà khác</label>
+                                             <select id="newHouseBuyYear" class="input-field"></select>
+                                         </div>
+                                         <div class="input-group">
+                                             <label for="newHouseValue" class="input-label">Giá trị mua nhà khác</label>
+                                             <input type="number" id="newHouseValue" class="input-field" value="3000">
+                                         </div>
+                                     </div>
+                                     <p class="text-xs text-slate-500">Tiền bán Lumi (sau khi trừ thuế nếu có) sẽ vào STK. Tiền mua nhà mới sẽ rút từ STK.</p>
                                 </div>
                             </div>
+                        </details>
+                    </div> <!-- End scrollable div -->
 
-                            <!-- PHÂN BỔ & SỰ KIỆN -->
-                            <div class="form-section">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-section-title">PHÂN BỔ THẶNG DƯ</div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Sổ tiết kiệm (%)</label>
-                                            <input type="number" class="form-control" id="savingAllocation" value="100" min="0" max="100">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Chứng khoán (%)</label>
-                                            <input type="number" class="form-control" id="stockAllocation" value="0" min="0" max="100">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-section-title">SỰ KIỆN QUAN TRỌNG</div>
-                                        <div class="mb-2">
-                                            <label class="form-label">Chuyển sinh sống năm</label>
-                                            <select class="form-select" id="moveYear">
-                                                <option value="2031" selected>2031</option>
-                                                <option value="2032">2032</option>
-                                                <option value="2033">2033</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-2">
-                                            <label class="form-label">Giảm chi phí sau khi chuyển</label>
-                                            <select class="form-select" id="moveExpenseReduction">
-                                                <option value="0.15" selected>15%</option>
-                                                <option value="0.20">20%</option>
-                                                <option value="0.25">25%</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-2">
-                                            <label class="form-label">Con lập gia đình năm</label>
-                                            <select class="form-select" id="childMarriageYear">
-                                                <option value="2050" selected>2050</option>
-                                                <option value="2051">2051</option>
-                                                <option value="2052">2052</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-2">
-                                            <label class="form-label">Giảm chi phí sau cưới</label>
-                                            <select class="form-select" id="marriageExpenseReduction">
-                                                <option value="0.30" selected>30%</option>
-                                                <option value="0.35">35%</option>
-                                                <option value="0.40">40%</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                </div>
 
-                            <button type="button" class="btn btn-calculate w-100" id="calculateBtn">
-                                🚀 TÍNH TOÁN KẾ HOẠCH TÀI CHÍNH
-                            </button>
-                        </form>
+                <!-- CỘT HIỂN THỊ DỮ LIỆU -->
+                <div class="xl:col-span-2">
+                    <h2 class="text-2xl font-bold text-slate-900 border-b pb-2 mb-4 flex items-center">
+                        <!-- Icon Bảng (Heroicons) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Bảng dòng tiền
+                    </h2>
+                    <div id="outputTableContainer" class="overflow-x-auto overflow-y-auto w-full max-h-[80vh] relative shadow-md rounded-lg border border-slate-200">
+                        <table class="min-w-full divide-y divide-slate-200">
+                            <thead class="bg-slate-200 sticky top-0 z-10">
+                                <tr>
+                                    <th class="px-3 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Năm</th>
+                                    <th class="px-3 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Tài sản<br>Đầu năm</th>
+                                    <th class="px-3 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Sổ TK<br>Đầu năm</th>
+                                    <th class="px-3 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">CK<br>Đầu năm</th>
+                                    <th class="px-3 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Chi tiêu<br>Năm</th>
+                                    <th class="px-3 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Lãi<br>Sổ TK</th>
+                                    <th class="px-3 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Lãi<br>CK</th>
+                                    <th class="px-3 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Thu nhập<br>(Lương, TĐ,...)</th>
+                                    <th class="px-3 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Thặng dư</th>
+                                    <th class="px-3 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Sổ TK<br>Cuối năm</th>
+                                    <th class="px-3 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">CK<br>Cuối năm</th>
+                                    <th class="px-3 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider">Tài sản<R>Cuối năm</th>
+                                    <th class="px-3 py-3 text-left text-xs font-bold text-slate-600 uppercase tracking-wider min-w-[250px]">Ghi chú sự kiện</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cashFlowBody" class="bg-white divide-y divide-slate-200">
+                                <!-- Dữ liệu sẽ được chèn vào đây bởi JavaScript -->
+                            </tbody>
+                        </table>
                     </div>
+                </div>
+            </div> <!-- End Grid -->
+
+            <!-- NEW: PHẦN PHÂN TÍCH -->
+            <div id="analysisSection" class="mt-12 p-6 bg-white rounded-lg shadow-lg border border-slate-200">
+                <h2 class="text-3xl font-bold text-slate-900 border-b border-slate-300 pb-3 mb-4 flex items-center">
+                    <!-- Icon Phân tích (Heroicons) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-3 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                    </svg>
+                    Phân tích & Tổng kết Kế hoạch
+                </h2>
+                <div id="analysisOutput" class="space-y-4 text-slate-700">
+                    <p class="text-slate-500">Nhấn "Tính toán & Cập nhật" để xem phân tích chi tiết...</p>
                 </div>
             </div>
 
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        📊 BẢNG DÒNG TIỀN (40 NĂM)
-                    </div>
-                    <div class="card-body">
-                        <div class="table-container">
-                            <table class="table table-bordered table-striped" id="cashflowTable">
-                                <thead>
-                                    <tr>
-                                        <th>Năm</th>
-                                        <th>Tài sản đầu năm</th>
-                                        <th>Sổ TK đầu năm</th>
-                                        <th>Chứng khoán đầu năm</th>
-                                        <th>Chi tiêu năm</th>
-                                        <th>Lãi sổ TK</th>
-                                        <th>Lãi CK</th>
-                                        <th>Thu nhập năm</th>
-                                        <th>Thặng dư</th>
-                                        <th>Sổ TK cuối năm</th>
-                                        <th>CK cuối năm</th>
-                                        <th>Tài sản cuối năm</th>
-                                        <th>Ghi chú</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="cashflowBody">
-                                    <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </main>
     </div>
 
-    <button class="download-btn" onclick="downloadHTML()">💾 Tải File HTML</button>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById('calculateBtn').addEventListener('click', calculateFinancialPlan);
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lấy tham chiếu các phần tử
+            const calculateButton = document.getElementById('calculateButton');
+            const cashFlowBody = document.getElementById('cashFlowBody');
+            const analysisOutput = document.getElementById('analysisOutput');
+            
+            // --- CÁC HÀM TIỆN ÍCH ---
 
-        function calculateFinancialPlan() {
-            // Lấy giá trị từ form
-            const savings = parseFloat(document.getElementById('savings').value);
-            const stocks = parseFloat(document.getElementById('stocks').value);
-            const land = parseFloat(document.getElementById('land').value);
-            const lumi = parseFloat(document.getElementById('lumi').value);
+            // Hàm lấy giá trị từ input
+            function getVal(id, isNumber = true) {
+                const el = document.getElementById(id);
+                if (!el) {
+                    console.error('Không tìm thấy phần tử với id:', id);
+                    return isNumber ? 0 : '';
+                }
+                let value = el.value;
+                if (isNumber) {
+                    return parseFloat(value) || 0;
+                }
+                return value;
+            }
+
+            // Hàm định dạng số (Đơn vị: Triệu VNĐ)
+            function formatCurrency(num) {
+                if (num === 0) return '0';
+                // Làm tròn đến 0 chữ số thập phân
+                return new Intl.NumberFormat('vi-VN').format(num.toFixed(0));
+            }
+
+            // Hàm điền các lựa chọn cho thẻ <select> (từ 0 đến 100)
+            function populateSelect(id, start, end, step, defaultVal, suffix = '', isPercent = false) {
+                const select = document.getElementById(id);
+                if (!select) return;
+                select.innerHTML = ''; // Xóa option cũ
+                for (let i = start; i <= end; i += step) {
+                    const option = document.createElement('option');
+                    let val = i;
+                    if (isPercent) val = i / 100; // Lưu giá trị thực (vd: 0.06)
+                    
+                    option.value = val;
+                    option.text = `${i}${suffix}`;
+                    if (Math.abs(val - defaultVal) < 0.0001) { // So sánh số float
+                        option.selected = true;
+                    }
+                    select.appendChild(option);
+                }
+            }
+
+            // Hàm điền các lựa chọn cho năm
+            function populateYearSelect(id, startYear, endYear, defaultVal, includeEmpty = false) {
+                const select = document.getElementById(id);
+                if (!select) return;
+                select.innerHTML = ''; // Xóa option cũ
+
+                if (includeEmpty) {
+                    const option = document.createElement('option');
+                    option.value = "9999"; // Năm kết thúc vô hạn
+                    option.text = "Không có";
+                    select.appendChild(option);
+                }
+
+                for (let i = startYear; i <= endYear; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.text = i;
+                    if (i === defaultVal) {
+                        option.selected = true;
+                    }
+                    select.appendChild(option);
+                }
+            }
+             // Hàm điền các lựa chọn cho tháng
+            function populateMonthSelect(id, defaultVal) {
+                const select = document.getElementById(id);
+                if (!select) return;
+                select.innerHTML = ''; // Xóa option cũ
+                for (let i = 1; i <= 12; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.text = `Tháng ${i}`;
+                    if (i === defaultVal) {
+                        option.selected = true;
+                    }
+                    select.appendChild(option);
+                }
+            }
             
-            const savingInterest = parseFloat(document.getElementById('savingInterest').value);
-            const stockInterest = parseFloat(document.getElementById('stockInterest').value);
-            const inflation = parseFloat(document.getElementById('inflation').value);
-            
-            const monthlyExpense = parseFloat(document.getElementById('monthlyExpense').value);
-            const monthlySalary = parseFloat(document.getElementById('monthlySalary').value);
-            
-            const stopWorkYear = parseInt(document.getElementById('stopWorkYear').value);
-            
-            const savingAllocation = parseFloat(document.getElementById('savingAllocation').value) / 100;
-            const stockAllocation = parseFloat(document.getElementById('stockAllocation').value) / 100;
-            
-            const moveYear = parseInt(document.getElementById('moveYear').value);
-            const moveExpenseReduction = parseFloat(document.getElementById('moveExpenseReduction').value);
-            const childMarriageYear = parseInt(document.getElementById('childMarriageYear').value);
-            const marriageExpenseReduction = parseFloat(document.getElementById('marriageExpenseReduction').value);
-            
-            // Tính toán BH thất nghiệp
-            const unemploymentBenefit = 17.6 * 12 * 0.6;
-            
-            // Khởi tạo biến
-            let currentYear = 2026;
-            let endYear = currentYear + 40;
-            
-            let currentSavings = savings;
-            let currentStocks = stocks;
-            let currentLand = land;
-            let currentLumi = lumi;
-            
-            let yearlyExpense = monthlyExpense * 12;
-            let yearlySalary = monthlySalary * 12;
-            
-            const cashflowBody = document.getElementById('cashflowBody');
-            cashflowBody.innerHTML = '';
-            
-            // Thu nhập thụ động cho 4 nguồn
-            const passiveIncomes = [1, 2, 3, 4].map(i => {
-                const startElem = document.getElementById(`passiveIncome${i}Start`);
-                const endElem = document.getElementById(`passiveIncome${i}End`);
-                const amountElem = document.getElementById(`passiveIncome${i}Amount`);
-                const growthElem = document.getElementById(`passiveIncome${i}Growth`);
+            // Hàm đồng bộ phần trăm (Tổng 100%)
+            function syncPercentage(changedId, targetId) {
+                const changed = document.getElementById(changedId);
+                const target = document.getElementById(targetId);
+                if (!changed || !target) return;
+
+                let changedVal = parseFloat(changed.value); // 0.0 -> 1.0
+                let targetVal = 1.0 - changedVal;
+
+                // Tìm option gần nhất
+                let closestOption = [...target.options].reduce((prev, curr) => {
+                    return (Math.abs(parseFloat(curr.value) - targetVal) < Math.abs(parseFloat(prev.value) - targetVal) ? curr : prev);
+                });
+                target.value = closestOption.value;
+            }
+
+
+            // --- HÀM KHỞI TẠO DROPDOWN ---
+            function populateDropdowns() {
+                const pStartYear = 2024;
+                const pEndYear = 2065;
+
+                // 2.1 Thị trường
+                populateSelect('savingsRate', 1, 15, 1, 0.06, '%', true); // 6%
+                populateSelect('stocksRate', 1, 20, 1, 0.08, '%', true); // 8%
+                populateSelect('inflation', 0, 10, 1, 0.04, '%', true); // 4%
+
+                // 2.3 Thu nhập Lương
+                populateMonthSelect('wifeRetireMonth', 12); 
+                populateYearSelect('wifeRetireYear', 2024, 2060, 2035); // Vợ nghỉ 2035
+                populateMonthSelect('husbandRetireMonth', 12); 
+                populateYearSelect('husbandRetireYear', 2024, 2060, 2030); // Chồng nghỉ 2030
+
+                // Thu nhập thụ động
+                populateYearSelect('p1_start', pStartYear, pEndYear, 2028);
+                populateYearSelect('p1_end', pStartYear, pEndYear, 9999, true);
+                populateSelect('p1_growth', 0, 20, 1, 0.01, '%', true); // 1%
+                populateYearSelect('p2_start', pStartYear, pEndYear, 2028);
+                populateYearSelect('p2_end', pStartYear, pEndYear, 9999, true);
+                populateSelect('p2_growth', 0, 20, 1, 0.00, '%', true);
+                populateYearSelect('p3_start', pStartYear, pEndYear, 2028);
+                populateYearSelect('p3_end', pStartYear, pEndYear, 9999, true);
+                populateSelect('p3_growth', 0, 20, 1, 0.00, '%', true);
+                populateYearSelect('p4_start', pStartYear, pEndYear, 2028);
+                populateYearSelect('p4_end', pStartYear, pEndYear, 9999, true);
+                populateSelect('p4_growth', 0, 20, 1, 0.00, '%', true);
+
+                // Phân bổ thặng dư
+                populateSelect('surplusToSavings', 0, 100, 5, 1.0, '%', true); // 100%
+                populateSelect('surplusToStocks', 0, 100, 5, 0.0, '%', true); // 0%
                 
-                return {
-                    start: startElem.value ? parseInt(startElem.value) : null,
-                    end: endElem.value ? parseInt(endElem.value) : null,
-                    amount: parseFloat(amountElem.value) * 12,
-                    growth: parseFloat(growthElem.value)
+                // Phân bổ bán đất (mặc định 75/25)
+                populateSelect('sellLand1ToSavings', 0, 100, 5, 0.75, '%', true); 
+                populateSelect('sellLand1ToStocks', 0, 100, 5, 0.25, '%', true); 
+                populateSelect('sellLand2ToSavings', 0, 100, 5, 0.75, '%', true); 
+                populateSelect('sellLand2ToStocks', 0, 100, 5, 0.25, '%', true); 
+
+
+                // 2.4 Sự kiện Chi tiêu
+                populateYearSelect('moveYear', pStartYear, pEndYear, 2031);
+                populateSelect('moveReduction', 0, 100, 5, 0.15, '%', true); // 15%
+                populateYearSelect('childMarriageYear', pStartYear, pEndYear, 2050);
+                populateSelect('childMarriageReduction', 0, 100, 5, 0.30, '%', true); // 30%
+
+                // Sự kiện Bán/Mua
+                populateYearSelect('sellLand1Year', pStartYear, pEndYear, 2027);
+                populateYearSelect('sellLand2Year', pStartYear, pEndYear, 2028);
+                populateYearSelect('sellLumiYear', pStartYear, pEndYear, 2031);
+                
+                populateYearSelect('rentStartYear', pStartYear, pEndYear, 2031);
+                populateYearSelect('rentEndYear', pStartYear, pEndYear, 2033);
+                populateYearSelect('newHouseBuyYear', pStartYear, pEndYear, 2034);
+            }
+
+            // --- HÀM TÍNH TOÁN CHÍNH ---
+            function calculateAndRender() {
+                // 1. Lấy tất cả giá trị đầu vào
+                const inputs = {
+                    // 2.0 Tài sản
+                    savings: getVal('savings'),
+                    stocks: getVal('stocks'),
+                    land: getVal('land'),
+                    lumi: getVal('lumi'),
+                    // 2.1 Thị trường
+                    savingsRate: getVal('savingsRate'),
+                    stocksRate: getVal('stocksRate'),
+                    inflation: getVal('inflation'),
+                    // 2.2 Chi tiêu
+                    monthlyExpense: getVal('monthlyExpense'),
+                    // 2.3 Thu nhập Lương
+                    wifeSalary: getVal('wifeSalary'),
+                    wifeRetireMonth: getVal('wifeRetireMonth'),
+                    wifeRetireYear: getVal('wifeRetireYear'),
+                    husbandSalary: getVal('husbandSalary'),
+                    husbandRetireMonth: getVal('husbandRetireMonth'),
+                    husbandRetireYear: getVal('husbandRetireYear'),
+                    surplusToSavings: getVal('surplusToSavings'),
+                    surplusToStocks: getVal('surplusToStocks'),
+                    // Thu nhập thụ động
+                    passive: [
+                        { name: getVal('p1_name', false), income: getVal('p1_income'), invest: getVal('p1_invest'), start: getVal('p1_start'), end: getVal('p1_end'), growth: getVal('p1_growth') },
+                        { name: getVal('p2_name', false), income: getVal('p2_income'), invest: getVal('p2_invest'), start: getVal('p2_start'), end: getVal('p2_end'), growth: getVal('p2_growth') },
+                        { name: getVal('p3_name', false), income: getVal('p3_income'), invest: getVal('p3_invest'), start: getVal('p3_start'), end: getVal('p3_end'), growth: getVal('p3_growth') },
+                        { name: getVal('p4_name', false), income: getVal('p4_income'), invest: getVal('p4_invest'), start: getVal('p4_start'), end: getVal('p4_end'), growth: getVal('p4_growth') },
+                    ],
+                    // 2.4 Sự kiện
+                    moveYear: getVal('moveYear'),
+                    moveReduction: getVal('moveReduction'),
+                    childMarriageYear: getVal('childMarriageYear'),
+                    childMarriageReduction: getVal('childMarriageReduction'),
+                    // Land Sales
+                    sellLand1Year: getVal('sellLand1Year'),
+                    sellLand1Value: getVal('sellLand1Value'),
+                    sellLand1ToSavings: getVal('sellLand1ToSavings'),
+                    sellLand1ToStocks: getVal('sellLand1ToStocks'),
+                    sellLand2Year: getVal('sellLand2Year'),
+                    sellLand2Value: getVal('sellLand2Value'),
+                    sellLand2ToSavings: getVal('sellLand2ToSavings'),
+                    sellLand2ToStocks: getVal('sellLand2ToStocks'),
+                    // Lumi/Rent/New House
+                    sellLumiYear: getVal('sellLumiYear'),
+                    sellLumiValue: getVal('sellLumiValue'),
+                    rentStartYear: getVal('rentStartYear'),
+                    rentEndYear: getVal('rentEndYear'),
+                    monthlyRentExpense: getVal('monthlyRentExpense'),
+                    newHouseBuyYear: getVal('newHouseBuyYear'),
+                    newHouseValue: getVal('newHouseValue'),
                 };
-            });
-            
-            // Tính toán cho từng năm
-            for (let year = currentYear; year <= endYear; year++) {
-                // Tính tài sản đầu năm
-                const assetsStart = currentSavings + currentStocks + currentLand + currentLumi;
+
+                // Khởi tạo biến cho vòng lặp
+                let results = [];
+                let currentStartAssets = {
+                    savings: inputs.savings,
+                    stocks: inputs.stocks,
+                    land: inputs.land,
+                    lumi: inputs.lumi,
+                    newHouse: 0
+                };
+                let prevYearExpense = inputs.monthlyExpense * 12;
                 
-                // Tính lãi từ sổ tiết kiệm và chứng khoán
-                const savingInterestEarned = currentSavings * savingInterest;
-                const stockInterestEarned = currentStocks * stockInterest;
-                
-                // Tính thu nhập năm
-                let income = 0;
-                
-                // Thu nhập từ lương
-                if (year < stopWorkYear) {
-                    income += yearlySalary;
+                // Trạng thái thu nhập thụ động (theo dõi giá trị tăng trưởng)
+                let passiveTrack = inputs.passive.map(p => p.income);
+
+                const UNEMPLOYMENT_BENEFIT = 126.72; // 126.72 triệu
+                const START_YEAR = 2026;
+                const NUM_YEARS = 40;
+
+                // 2. Vòng lặp tính toán 40 năm
+                for (let i = 0; i < NUM_YEARS; i++) {
+                    const year = START_YEAR + i;
+                    let row = {
+                        year: year,
+                        startSavings: currentStartAssets.savings,
+                        startStocks: currentStartAssets.stocks,
+                        startAssets: currentStartAssets.savings + currentStartAssets.stocks + currentStartAssets.land + currentStartAssets.lumi + currentStartAssets.newHouse,
+                        annualExpense: 0,
+                        notes: []
+                    };
+
+                    // --- Tính Chi Tiêu CƠ BẢN (Inflation, Events) ---
+                    let expenseMultiplier = 1;
+                    if (year === START_YEAR) {
+                        // Giữ nguyên mức chi tiêu năm đầu
+                    } else if (year === inputs.moveYear) {
+                        expenseMultiplier = (1 - inputs.moveReduction);
+                        row.notes.push(`Giảm chi tiêu ${inputs.moveReduction*100}% (Chuyển nơi sống)`);
+                    } else if (year === inputs.childMarriageYear) {
+                        expenseMultiplier = (1 - inputs.childMarriageReduction);
+                        row.notes.push(`Giảm chi tiêu ${inputs.childMarriageReduction*100}% (Con lập gia đình)`);
+                    } else {
+                        // Áp dụng lạm phát
+                        expenseMultiplier = (1 + inputs.inflation);
+                    }
+                    
+                    if (year === START_YEAR) {
+                        row.annualExpense = prevYearExpense;
+                    } else {
+                        row.annualExpense = prevYearExpense * expenseMultiplier;
+                    }
+                    prevYearExpense = row.annualExpense; // Cập nhật cho năm sau
+                    
+                    // --- Thêm Chi tiêu THUÊ NHÀ (Rent Expense) ---
+                    if (year >= inputs.rentStartYear && year <= inputs.rentEndYear) {
+                        let rent = inputs.monthlyRentExpense * 12;
+                        row.annualExpense += rent;
+                        row.notes.push(`Chi tiêu Thuê nhà: ${formatCurrency(rent)}`);
+                    }
+
+
+                    // --- Tính Lãi (từ tài sản ĐẦU NĂM) ---
+                    row.savingsInterest = row.startSavings * inputs.savingsRate;
+                    row.stocksInterest = row.startStocks * inputs.stocksRate;
+
+                    // --- Tính Thu Nhập (Lương, BHTN, Thụ Động) ---
+                    let totalSalaryIncome = 0;
+                    
+                    // Thu nhập VỢ
+                    if (year < inputs.wifeRetireYear) {
+                        totalSalaryIncome += inputs.wifeSalary * 12;
+                    } else if (year === inputs.wifeRetireYear && inputs.wifeRetireMonth > 0) {
+                        totalSalaryIncome += inputs.wifeSalary * inputs.wifeRetireMonth;
+                        row.notes.push(`Vợ nghỉ hưu T${inputs.wifeRetireMonth}/${year}`);
+                    }
+                    
+                    // Thu nhập CHỒNG
+                    if (year < inputs.husbandRetireYear) {
+                        totalSalaryIncome += inputs.husbandSalary * 12;
+                    } else if (year === inputs.husbandRetireYear && inputs.husbandRetireMonth > 0) {
+                        totalSalaryIncome += inputs.husbandSalary * inputs.husbandRetireMonth;
+                        row.notes.push(`Chồng nghỉ hưu T${inputs.husbandRetireMonth}/${year}`);
+                    }
+                    
+                    // BHTN - Được nhận 1 năm sau khi nghỉ (hoặc ngay trong năm nếu nghỉ sớm)
+                    let unemploymentBenefit = 0;
+                    if (year === inputs.wifeRetireYear) {
+                        unemploymentBenefit += UNEMPLOYMENT_BENEFIT;
+                        row.notes.push("Vợ nhận BHTN");
+                    }
+                    if (year === inputs.husbandRetireYear) {
+                         unemploymentBenefit += UNEMPLOYMENT_BENEFIT;
+                         row.notes.push("Chồng nhận BHTN");
+                    }
+
+                    let passiveIncomeTotal = 0;
+                    for (let j = 0; j < passiveTrack.length; j++) {
+                        const p = inputs.passive[j];
+                        const pName = p.name || 'Nguồn ' + (j + 1);
+
+                        if (year === p.start && p.income > 0) {
+                             row.notes.push(`BĐ TTTĐ: '${pName}'`);
+                        }
+                        if (year >= p.start && year < p.end) { // Thu nhập thụ động theo dõi từ năm bắt đầu đến năm trước năm kết thúc
+                            let currentPassive = passiveTrack[j] * 12;
+                            passiveIncomeTotal += currentPassive;
+                            passiveTrack[j] *= (1 + p.growth);
+                        }
+                        if (year === p.end && p.income > 0) {
+                            passiveIncomeTotal += passiveTrack[j] * 12; // Nhận năm cuối cùng
+                            passiveTrack[j] = 0; // Đặt về 0 cho các năm sau
+                            row.notes.push(`KT TTTĐ: '${pName}'`);
+                        }
+                    }
+                    
+                    row.nonInterestIncome = totalSalaryIncome + unemploymentBenefit + passiveIncomeTotal;
+
+                    // --- Tính Thặng Dư ---
+                    let totalIncome = row.savingsInterest + row.stocksInterest + row.nonInterestIncome;
+                    row.surplus = totalIncome - row.annualExpense;
+                    
+                    // --- Phân bổ Thặng Dư/Thiếu Hụt ---
+                    row.endSavings = row.startSavings;
+                    row.endStocks = row.startStocks;
+
+                    if (row.surplus > 0) {
+                        row.endSavings += row.surplus * inputs.surplusToSavings;
+                        row.endStocks += row.surplus * inputs.surplusToStocks;
+                    } else {
+                        row.endSavings += row.surplus; // surplus là số âm, rút STK
+                        row.notes.push("Rút STK bù chi tiêu");
+                    }
+
+                    // --- Xử lý Sự Kiện Tài Sản (Cập nhật cuối năm) ---
+                    let endLand = currentStartAssets.land;
+                    let endLumi = currentStartAssets.lumi;
+                    let endNewHouse = currentStartAssets.newHouse;
+
+                    // Đầu tư TTTĐ
+                    for (let j = 0; j < inputs.passive.length; j++) {
+                        const p = inputs.passive[j];
+                        if (year === p.start && p.invest > 0) {
+                            row.endSavings -= p.invest;
+                            row.notes.push(`Đầu tư TTTĐ '${p.name || 'Nguồn ' + (j+1)}' (${formatCurrency(p.invest)} từ STK)`);
+                        }
+                    }
+
+                    // Sự kiện cố định 2027
+                    if (year === 2027) {
+                        row.endSavings -= 3700; 
+                        endLumi = 5500; 
+                        row.notes.push("Mua full Lumi (3.7 tỉ từ STK)");
+                        row.endSavings += 500; 
+                        row.notes.push("GĐ hỗ trợ (0.5 tỉ vào STK)");
+                    }
+
+                    // Bán đất 1
+                    if (year === inputs.sellLand1Year && inputs.sellLand1Value > 0) {
+                        endLand -= inputs.sellLand1Value; 
+                        let proceeds = inputs.sellLand1Value;
+                        row.endSavings += proceeds * inputs.sellLand1ToSavings;
+                        row.endStocks += proceeds * inputs.sellLand1ToStocks;
+                        row.notes.push(`Bán đất 1 (Giá trị ${formatCurrency(proceeds)}, ${inputs.sellLand1ToSavings*100}% vào STK)`);
+                    }
+                    
+                    // Bán đất 2
+                    if (year === inputs.sellLand2Year && inputs.sellLand2Value > 0) {
+                        endLand -= inputs.sellLand2Value; 
+                        let proceeds = inputs.sellLand2Value;
+                        row.endSavings += proceeds * inputs.sellLand2ToSavings;
+                        row.endStocks += proceeds * inputs.sellLand2ToStocks;
+                        row.notes.push(`Bán đất 2 (Giá trị ${formatCurrency(proceeds)}, ${inputs.sellLand2ToSavings*100}% vào STK)`);
+                    }
+
+                    // Bán Lumi
+                    if (year === inputs.sellLumiYear) {
+                        endLumi = 0; 
+                        row.endSavings += inputs.sellLumiValue;
+                        row.notes.push(`Bán Lumi (${formatCurrency(inputs.sellLumiValue)}), tiền vào STK.`);
+                    }
+                    
+                    // Mua nhà mới
+                    if (year === inputs.newHouseBuyYear) {
+                        endNewHouse = inputs.newHouseValue; 
+                        row.endSavings -= inputs.newHouseValue;
+                        row.notes.push(`Mua nhà khác (${formatCurrency(inputs.newHouseValue)}), rút từ STK.`);
+                    }
+
+
+                    // --- Tính Tài Sản Cuối Năm ---
+                    row.endAssets = row.endSavings + row.endStocks + endLand + endLumi + endNewHouse;
+
+                    // Cập nhật tài sản cho đầu năm sau
+                    currentStartAssets = {
+                        savings: row.endSavings,
+                        stocks: row.endStocks,
+                        land: endLand,
+                        lumi: endLumi,
+                        newHouse: endNewHouse
+                    };
+                    
+                    results.push(row);
                 }
+
+                // 3. Hiển thị kết quả lên bảng
+                cashFlowBody.innerHTML = ''; // Xóa bảng cũ
+                results.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'whitespace-nowrap even:bg-slate-50 hover:bg-gray-50';
+                    
+                    let surplusClass = row.surplus >= 0 ? 'text-green-600' : 'text-red-600';
+                    if (row.endSavings < 0 || row.endAssets < 0) {
+                        tr.className += ' bg-red-100';
+                    } else if (row.endSavings < 1000) { // Cảnh báo STK dưới 1 tỷ
+                         tr.className += ' bg-yellow-50';
+                    }
+
+                    tr.innerHTML = `
+                        <td class="px-3 py-2 text-sm font-medium text-slate-900">${row.year}</td>
+                        <td class="px-3 py-2 text-sm text-slate-700 font-medium">${formatCurrency(row.startAssets)}</td>
+                        <td class="px-3 py-2 text-sm text-slate-500">${formatCurrency(row.startSavings)}</td>
+                        <td class="px-3 py-2 text-sm text-slate-500">${formatCurrency(row.startStocks)}</td>
+                        <td class="px-3 py-2 text-sm text-orange-600">${formatCurrency(row.annualExpense)}</td>
+                        <td class="px-3 py-2 text-sm text-green-600">${formatCurrency(row.savingsInterest)}</td>
+                        <td class="px-3 py-2 text-sm text-green-600">${formatCurrency(row.stocksInterest)}</td>
+                        <td class="px-3 py-2 text-sm text-blue-600">${formatCurrency(row.nonInterestIncome)}</td>
+                        <td class="px-3 py-2 text-sm font-medium ${surplusClass}">${formatCurrency(row.surplus)}</td>
+                        <td class="px-3 py-2 text-sm text-slate-500 font-medium">${formatCurrency(row.endSavings)}</td>
+                        <td class="px-3 py-2 text-sm text-slate-500 font-medium">${formatCurrency(row.endStocks)}</td>
+                        <td class="px-3 py-2 text-sm text-slate-900 font-bold">${formatCurrency(row.endAssets)}</td>
+                        <td class="px-3 py-2 text-sm text-slate-500 whitespace-normal min-w-[250px]">${row.notes.join('; ')}</td>
+                    `;
+                    cashFlowBody.appendChild(tr);
+                });
+
+                // 4. Chạy phân tích
+                runAnalysis(results, inputs);
+            }
+
+            // --- HÀM PHÂN TÍCH KẾT QUẢ ---
+            function runAnalysis(results, inputs) {
+                let html = '';
+
+                // Biểu tượng
+                const iconDanger = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-red-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>`;
+                const iconWarning = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-yellow-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM10 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>`;
+                const iconSuccess = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>`;
+                const iconIdea = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-500" viewBox="0 0 20 20" fill="currentColor"><path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM3 8a1 1 0 100 2h1a1 1 0 100-2H3zM15 8a1 1 0 100 2h1a1 1 0 100-2h-1zM8 15a1 1 0 102 0v-1a1 1 0 10-2 0v1z" fill-rule="evenodd" clip-rule="evenodd"></path><path d="M12.937 11.625A4.002 4.002 0 0113 10a3.987 3.987 0 01-1.063 2.625c-1.02.722-2.193 1.15-3.437 1.15-1.244 0-2.417-.428-3.437-1.15A3.987 3.987 0 015 10c0-.06 0-.119.006-.179C6.545 12.016 8.163 12.5 10 12.5c1.837 0 3.455-.484 4.994-2.354.002.062.006.12.006.18z" fill-rule="evenodd" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M11.5 5.5a1 1 0 10-2 0V7a1 1 0 102 0V5.5zM4 10a1 1 0 100 2h1a1 1 0 100-2H4zM15 10a1 1 0 100 2h1a1 1 0 100-2h-1zM9 16.5a1 1 0 102 0V15a1 1 0 10-2 0v1.5z" clip-rule="evenodd"></path></svg>`;
+
                 
-                // BH thất nghiệp (năm sau khi nghỉ việc)
-                if (year === stopWorkYear + 1) {
-                    income += unemploymentBenefit;
+                // --- 1. Phân tích Tài sản âm ---
+                const firstNegativeAssetYear = results.find(r => r.endAssets < 0);
+                if (firstNegativeAssetYear) {
+                    html += `<h3>${iconDanger}Tình trạng Tài sản (Tài sản ròng)</h3>`;
+                    html += `<p>Theo dự báo, tổng tài sản ròng của gia đình bắt đầu <span class="highlight-bad">bị âm vào năm ${firstNegativeAssetYear.year}</span> (Giá trị cuối năm: ${formatCurrency(firstNegativeAssetYear.endAssets)} Triệu). Đây là một cột mốc rủi ro lớn cần phải điều chỉnh.</p>`;
+                } else {
+                    html += `<h3>${iconSuccess}Tình trạng Tài sản (Tài sản ròng)</h3>`;
+                    html += `<p>Xin chúc mừng! Kế hoạch tài chính của bạn rất tốt, tổng tài sản ròng <span class="highlight-good">duy trì dương trong suốt 40 năm</span>. Tài sản cuối kỳ (năm ${results[results.length - 1].year}) đạt khoảng <span class="highlight-good">${formatCurrency(results[results.length - 1].endAssets)} Triệu VNĐ</span>.</p>`;
                 }
+
+                // --- 2. Phân tích Dòng tiền chi tiết ---
+                html += `<h3>${iconWarning}Phân tích Dòng tiền (Thặng dư)</h3>`;
                 
-                // Thu nhập thụ động từ 4 nguồn
-                passiveIncomes.forEach(pi => {
-                    if (pi.start && year >= pi.start && (!pi.end || year <= pi.end)) {
-                        const yearsPassive = year - pi.start;
-                        const passiveGrowth = Math.pow(1 + pi.growth, yearsPassive);
-                        income += pi.amount * passiveGrowth;
+                const negativeSurplusPeriods = [];
+                let isNegative = false;
+                let startYear = null;
+                
+                results.forEach(r => {
+                    if (r.surplus < 0 && !isNegative) {
+                        isNegative = true;
+                        startYear = r.year;
+                    } else if (r.surplus >= 0 && isNegative) {
+                        isNegative = false;
+                        negativeSurplusPeriods.push({ start: startYear, end: r.year - 1 });
                     }
                 });
-                
-                // Tính chi tiêu năm
-                let expenseThisYear = yearlyExpense;
-                
-                // Áp dụng lạm phát (trừ năm đầu tiên)
-                if (year > currentYear) {
-                    expenseThisYear *= (1 + inflation);
+
+                if (isNegative) { // Kết thúc mà vẫn âm
+                    negativeSurplusPeriods.push({ start: startYear, end: results[results.length - 1].year });
                 }
-                
-                // Áp dụng giảm chi tiêu khi chuyển chỗ ở
-                if (year === moveYear) {
-                    expenseThisYear *= (1 - moveExpenseReduction);
-                }
-                
-                // Áp dụng giảm chi tiêu khi con cái lập gia đình
-                if (year === childMarriageYear) {
-                    expenseThisYear *= (1 - marriageExpenseReduction);
-                }
-                
-                // Tính thặng dư/thâm hụt
-                const totalIncome = savingInterestEarned + stockInterestEarned + income;
-                const surplus = totalIncome - expenseThisYear;
-                
-                // Xử lý các sự kiện đặc biệt
-                let notes = '';
-                
-                // Mua full nhà Lumi năm 2027
-                if (year === 2027) {
-                    currentSavings -= 3.2; // 3.7 tỷ - 0.5 tỷ hỗ trợ
-                    currentLumi = 5.5;
-                    notes += "Mua full nhà Lumi; ";
-                }
-                
-                // Bán đất lần 2 năm 2028
-                if (year === 2028) {
-                    currentLand -= 2.7;
-                    currentSavings += 2.0;
-                    currentStocks += 0.7;
-                    notes += "Bán đất lần 2; ";
-                }
-                
-                // Bán nhà Lumi năm 2031
-                if (year === 2031) {
-                    currentLumi = 0;
-                    currentSavings += 4; // 7 tỷ - 3 tỷ mua nhà mới
-                    notes += "Bán nhà Lumi; ";
-                }
-                
-                // Xử lý thặng dư/thâm hụt
-                if (surplus > 0) {
-                    currentSavings += surplus * savingAllocation;
-                    currentStocks += surplus * stockAllocation;
+
+                if (negativeSurplusPeriods.length > 0) {
+                    html += `<p>Phải <span class="highlight-bad">rút Sổ Tiết Kiệm (STK) để bù chi tiêu</span> trong các khoảng thời gian sau (thặng dư âm):</p>
+                            <ul>`;
+                    
+                    negativeSurplusPeriods.forEach(p => {
+                        const firstNegativeSavings = results.find(r => r.year >= p.start && r.endSavings < 0);
+                        let runOutStatus = "";
+                        if (firstNegativeSavings) {
+                             runOutStatus = ` (STK cạn kiệt/âm từ năm ${firstNegativeSavings.year})`;
+                        } else {
+                             runOutStatus = " (STK vẫn duy trì dương)";
+                        }
+                        
+                        let reasonForReturn = "";
+                        if (p.end < results[results.length - 1].year) {
+                             const returnYear = p.end + 1;
+                             const returnRow = results.find(r => r.year === returnYear);
+                             const notes = returnRow.notes.join('; ').toLowerCase();
+                             
+                             if (notes.includes("rút STK bù chi tiêu") && returnRow.surplus >= 0) {
+                                reasonForReturn = ` (Nguyên nhân: STK dư lớn từ các sự kiện bán tài sản trước đó giúp lãi STK đủ bù chi phí)`;
+                             } else if (notes.includes("bđ tttđ") || notes.includes("bán đất")) {
+                                reasonForReturn = ` (Nguyên nhân: Dòng tiền dương trở lại nhờ ${returnRow.notes.find(n => n.includes("TTTĐ") || n.includes("Bán đất"))})`;
+                             }
+                        }
+
+                        html += `<li><strong>Năm ${p.start} đến ${p.end}</strong>${runOutStatus}${reasonForReturn}</li>`;
+                    });
+
+                    html += `</ul>`;
                 } else {
-                    currentSavings += surplus;
+                    html += `<p>Dòng tiền thặng dư <span class="highlight-good">luôn dương</span>. Gia đình không bao giờ phải rút STK để bù chi tiêu.</p>`;
                 }
+
+                // --- 3. Phân tích Sự kiện lớn ---
+                html += `<h3>${iconIdea}Các Sự kiện chính ảnh hưởng</h3>`;
+                html += `<ul>`;
+
+                html += `<li><strong>Nghỉ hưu:</strong> Chồng nghỉ hưu năm ${inputs.husbandRetireYear}, Vợ nghỉ hưu năm ${inputs.wifeRetireYear}. Việc giảm thu nhập lương này là nguyên nhân chính khiến dòng tiền thặng dư bị âm (trước khi thu nhập thụ động phát huy tác dụng).</li>`;
+
+                html += `<li><strong>Sự kiện 2027:</strong> Giao dịch mua full Lumi (rút ${formatCurrency(3700)} Triệu) là cú sốc lớn lên STK, nhưng được bù đắp bởi tiền hỗ trợ (${formatCurrency(500)} Triệu).</li>`;
                 
-                // Đảm bảo giá trị không âm
-                if (currentSavings < 0) currentSavings = 0;
-                if (currentStocks < 0) currentStocks = 0;
-                
-                // Tính tài sản cuối năm
-                const assetsEnd = currentSavings + currentStocks + currentLand + currentLumi;
-                
-                // Thêm dòng vào bảng
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${year}</td>
-                    <td>${formatMoney(assetsStart)}</td>
-                    <td>${formatMoney(currentSavings)}</td>
-                    <td>${formatMoney(currentStocks)}</td>
-                    <td>${formatMoney(expenseThisYear)}</td>
-                    <td>${formatMoney(savingInterestEarned)}</td>
-                    <td>${formatMoney(stockInterestEarned)}</td>
-                    <td>${formatMoney(income)}</td>
-                    <td>${formatMoney(surplus)}</td>
-                    <td>${formatMoney(currentSavings)}</td>
-                    <td>${formatMoney(currentStocks)}</td>
-                    <td>${formatMoney(assetsEnd)}</td>
-                    <td>${notes}</td>
-                `;
-                cashflowBody.appendChild(row);
-                
-                // Cập nhật chi tiêu năm sau
-                yearlyExpense = expenseThisYear;
+                if (inputs.sellLand2Value > 0) {
+                    html += `<li><strong>Bán đất (${inputs.sellLand2Year}):</strong> Với giá trị ${formatCurrency(inputs.sellLand2Value)} Triệu, đây là nguồn tiền quan trọng được bơm vào STK/CK, giúp kéo dài khả năng thanh khoản của STK.</li>`;
+                }
+
+                if (inputs.sellLumiYear > 0) {
+                     const rentPeriod = inputs.rentEndYear - inputs.rentStartYear + 1;
+                     html += `<li><strong>Chiến lược nhà ở (${inputs.sellLumiYear} - ${inputs.newHouseBuyYear}):</strong> Bán Lumi (${formatCurrency(inputs.sellLumiValue)} Triệu) đưa một lượng tiền mặt lớn vào STK. Gia đình thuê nhà trong ${rentPeriod} năm (tăng chi phí ${formatCurrency(inputs.monthlyRentExpense*12)}/năm) trước khi mua nhà mới (${formatCurrency(inputs.newHouseValue)} Triệu). Đây là giai đoạn chuyển tiếp rất quan trọng.</li>`;
+                }
+
+
+                // --- 4. Tư vấn ---
+                html += `<h3>${iconIdea}Tư vấn Kế hoạch (Tránh Tài sản âm)</h3>`;
+                if (firstNegativeAssetYear || negativeSurplusPeriods.length > 0) {
+                    html += `<p>Kế hoạch hiện tại có thể không bền vững về dài hạn. Cần ưu tiên các hành động sau:</p>
+                             <ul>
+                                <li><strong>Tăng Đầu tư Sinh lời:</strong> Hiện tại, ${inputs.surplusToSavings*100}% thặng dư vào STK. Cân nhắc tăng <span class="highlight-good">tỷ lệ phân bổ thặng dư vào Chứng khoán</span> để tăng tốc độ tăng trưởng tài sản (từ ${inputs.stocksRate*100}%/năm) trước khi nghỉ hưu.</li>
+                                <li><strong>Tối ưu hóa Thu nhập Thụ động:</strong> Cần kích hoạt sớm hơn hoặc tăng cường nguồn thu nhập thụ động (Nguồn 2, 3, 4) để bù đắp sự sụt giảm lớn từ lương.</li>
+                                <li><strong>Bán tài sản sinh lời thấp sớm hơn:</strong> Nếu dòng tiền STK âm nặng, cân nhắc đẩy sớm thời điểm bán đất (năm ${inputs.sellLand2Year}) để bơm tiền mặt vào hệ thống tài chính sớm hơn.</li>
+                             </ul>`;
+                } else {
+                    html += `<p>Kế hoạch của bạn đang đi đúng hướng. Để tối đa hóa tài sản cuối kỳ, bạn có thể cân nhắc tăng tỉ lệ đầu tư vào Chứng khoán, nhưng tổng thể kế hoạch đã rất vững chắc.</p>`;
+                }
+
+
+                analysisOutput.innerHTML = html;
             }
-        }
 
-        function formatMoney(amount) {
-            if (amount >= 1) {
-                return amount.toFixed(2) + ' tỷ';
-            } else {
-                return (amount * 1000).toFixed(0) + ' triệu';
-            }
-        }
+            // --- GẮN SỰ KIỆN VÀ CHẠY LẦN ĐẦU ---
+            populateDropdowns();
+            
+            // Gắn sự kiện đồng bộ phần trăm
+            const surplusSavings = document.getElementById('surplusToSavings');
+            const surplusStocks = document.getElementById('surplusToStocks');
+            surplusSavings.addEventListener('change', () => syncPercentage('surplusToSavings', 'surplusToStocks'));
+            surplusStocks.addEventListener('change', () => syncPercentage('surplusToStocks', 'surplusToSavings'));
+            
+            const land1Savings = document.getElementById('sellLand1ToSavings');
+            const land1Stocks = document.getElementById('sellLand1ToStocks');
+            land1Savings.addEventListener('change', () => syncPercentage('sellLand1ToSavings', 'sellLand1ToStocks'));
+            land1Stocks.addEventListener('change', () => syncPercentage('sellLand1ToStocks', 'sellLand1ToSavings'));
 
-        function downloadHTML() {
-            const htmlContent = document.documentElement.outerHTML;
-            const blob = new Blob([htmlContent], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'ke_hoach_tai_chinh_nemo_nini.html';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
+            const land2Savings = document.getElementById('sellLand2ToSavings');
+            const land2Stocks = document.getElementById('sellLand2ToStocks');
+            land2Savings.addEventListener('change', () => syncPercentage('sellLand2ToSavings', 'sellLand2ToStocks'));
+            land2Stocks.addEventListener('change', () => syncPercentage('sellLand2ToStocks', 'sellLand2ToSavings'));
 
-        // Tính toán ngay khi trang được tải
-        window.onload = calculateFinancialPlan;
+
+            calculateButton.addEventListener('click', calculateAndRender);
+            
+            // Chạy tính toán lần đầu khi tải trang
+            calculateAndRender();
+
+        });
     </script>
+
 </body>
 </html>
+
